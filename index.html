@@ -893,8 +893,544 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
     </div>
   </div>
 
-  <!-- Result Panel (simplified for space) -->
+  <!-- ═══════════════ STEP 2: EXIT TIMELINE & OWNERSHIP ═══════════════ -->
+  <div class="step-panel" data-step="2">
+    <div class="step-header">
+      <div class="step-eyebrow">Section 2 of 5</div>
+      <h2>Your Timeline &amp; <em>Exit Plan</em></h2>
+      <p>The gap between when you want to exit and how prepared you are is one of the biggest risk factors buyers exploit. Let's find out where you stand.</p>
+    </div>
+    <div class="gold-rule"></div>
+    <div class="step-body">
+
+      <div class="field-group">
+        <div class="field-label">When are you looking to exit or transition? <span class="required">Required</span>
+          <span class="risk-tag high">High risk factor</span>
+        </div>
+        <div class="field-hint">The tighter the timeline, the more leverage buyers have over you — unless you're prepared.</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'timeline','asap')">
+            <input type="radio" name="timeline" value="asap">
+            <div class="option-check"></div>
+            <div class="option-card-label">Within the next 12 months</div>
+            <div class="option-card-sub">Urgency is high — preparation is critical</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'timeline','1to3')">
+            <input type="radio" name="timeline" value="1to3">
+            <div class="option-check"></div>
+            <div class="option-card-label">1 – 3 years</div>
+            <div class="option-card-sub">Ideal planning window if work starts now</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'timeline','3to5')">
+            <input type="radio" name="timeline" value="3to5">
+            <div class="option-check"></div>
+            <div class="option-card-label">3 – 5 years</div>
+            <div class="option-card-sub">Time to do it right</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'timeline','over5')">
+            <input type="radio" name="timeline" value="over5">
+            <div class="option-check"></div>
+            <div class="option-card-label">5+ years or not sure yet</div>
+            <div class="option-card-sub">Early stage thinking</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Owner's age range <span class="required">Required</span></div>
+        <div class="options-grid three">
+          <div class="option-card" onclick="selectOption(this,'ownerAge','under45')">
+            <input type="radio" name="ownerAge" value="under45">
+            <div class="option-check"></div>
+            <div class="option-card-label">Under 45</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'ownerAge','45to54')">
+            <input type="radio" name="ownerAge" value="45to54">
+            <div class="option-check"></div>
+            <div class="option-card-label">45 – 54</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'ownerAge','55to64')">
+            <input type="radio" name="ownerAge" value="55to64">
+            <div class="option-check"></div>
+            <div class="option-card-label">55 – 64</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'ownerAge','65to74')">
+            <input type="radio" name="ownerAge" value="65to74">
+            <div class="option-check"></div>
+            <div class="option-card-label">65 – 74</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'ownerAge','75plus')">
+            <input type="radio" name="ownerAge" value="75plus">
+            <div class="option-check"></div>
+            <div class="option-card-label">75+</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Ownership structure</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'ownership','sole')">
+            <input type="radio" name="ownership" value="sole">
+            <div class="option-check"></div>
+            <div class="option-card-label">Sole Owner / Founder</div>
+            <div class="option-card-sub">100% — you make all decisions</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'ownership','family')">
+            <input type="radio" name="ownership" value="family">
+            <div class="option-check"></div>
+            <div class="option-card-label">Family-Owned</div>
+            <div class="option-card-sub">Multiple family members involved</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'ownership','partner')">
+            <input type="radio" name="ownership" value="partner">
+            <div class="option-check"></div>
+            <div class="option-card-label">Business Partners</div>
+            <div class="option-card-sub">Non-family co-owners</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'ownership','inherited')">
+            <input type="radio" name="ownership" value="inherited">
+            <div class="option-check"></div>
+            <div class="option-card-label">Inherited / 2nd Gen</div>
+            <div class="option-card-sub">Took over from a family member</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Do you have a formal succession plan in place?
+          <span class="risk-tag high">High risk factor</span>
+        </div>
+        <div class="field-hint">Buyers price you lower when there's no clear transition plan.</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'succPlan','yes_full')">
+            <input type="radio" name="succPlan" value="yes_full">
+            <div class="option-check"></div>
+            <div class="option-card-label">Yes — fully documented and in place</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'succPlan','yes_partial')">
+            <input type="radio" name="succPlan" value="yes_partial">
+            <div class="option-check"></div>
+            <div class="option-card-label">Partially — some ideas, not formal</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'succPlan','no')">
+            <input type="radio" name="succPlan" value="no">
+            <div class="option-check"></div>
+            <div class="option-card-label">No plan in place</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'succPlan','unsure')">
+            <input type="radio" name="succPlan" value="unsure">
+            <div class="option-check"></div>
+            <div class="option-card-label">Not sure where to start</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <button class="btn-next" onclick="nextStep()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ STEP 3: BUSINESS HEALTH ═══════════════ -->
+  <div class="step-panel" data-step="3">
+    <div class="step-header">
+      <div class="step-eyebrow">Section 3 of 5</div>
+      <h2>Business Health <em>&amp; Operations</em></h2>
+      <p>These are the four things buyers look at first when they're deciding whether to discount your offer — or walk away entirely.</p>
+    </div>
+    <div class="gold-rule"></div>
+    <div class="step-body">
+
+      <div class="field-group">
+        <div class="field-label">How is your EBITDA trending?
+          <span class="risk-tag high">Direct multiple impact</span>
+        </div>
+        <div class="field-hint">Buyers pay for trajectory. A declining EBITDA kills multiple negotiations before they start.</div>
+        <div class="options-grid three">
+          <div class="option-card" onclick="selectOption(this,'ebitda','growing')">
+            <input type="radio" name="ebitda" value="growing">
+            <div class="option-check"></div>
+            <div class="option-card-label">Growing</div>
+            <div class="option-card-sub">Up 10%+ over the last 2 years</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'ebitda','stable')">
+            <input type="radio" name="ebitda" value="stable">
+            <div class="option-check"></div>
+            <div class="option-card-label">Stable</div>
+            <div class="option-card-sub">Flat or slight movement</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'ebitda','declining')">
+            <input type="radio" name="ebitda" value="declining">
+            <div class="option-check"></div>
+            <div class="option-card-label">Declining</div>
+            <div class="option-card-sub">Down vs. prior years</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Could the business run for 90 days without you present?
+          <span class="risk-tag high">Key man risk</span>
+        </div>
+        <div class="field-hint">This is the exact question PE buyers ask during due diligence. If the answer is no, they see a liability — not an asset. This is the #1 multiple killer.</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'runWithout','yes')">
+            <input type="radio" name="runWithout" value="yes">
+            <div class="option-check"></div>
+            <div class="option-card-label">Yes — confidently</div>
+            <div class="option-card-sub">Strong management team, systems in place</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'runWithout','maybe')">
+            <input type="radio" name="runWithout" value="maybe">
+            <div class="option-check"></div>
+            <div class="option-card-label">Maybe — with some friction</div>
+            <div class="option-card-sub">It would struggle but survive</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'runWithout','no')">
+            <input type="radio" name="runWithout" value="no">
+            <div class="option-check"></div>
+            <div class="option-card-label">No — I am the business</div>
+            <div class="option-card-sub">Customers, decisions, operations depend on me</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Does the business have documented SOPs?
+          <span class="risk-tag med">Valuation risk</span>
+        </div>
+        <div class="field-hint">No SOPs means every process walks out the door with you. Buyers use this to lower their offer.</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'sops','yes_full')">
+            <input type="radio" name="sops" value="yes_full">
+            <div class="option-check"></div>
+            <div class="option-card-label">Yes — comprehensive and current</div>
+            <div class="option-card-sub">All key departments documented</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'sops','partial')">
+            <input type="radio" name="sops" value="partial">
+            <div class="option-check"></div>
+            <div class="option-card-label">Some — key areas only</div>
+            <div class="option-card-sub">Partial documentation exists</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'sops','no')">
+            <input type="radio" name="sops" value="no">
+            <div class="option-check"></div>
+            <div class="option-card-label">No — it lives in people's heads</div>
+            <div class="option-card-sub">Nothing formally documented</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">How concentrated is your customer base?
+          <span class="risk-tag high">Deal-breaking risk</span>
+        </div>
+        <div class="field-hint">If one client walks after the sale, your buyer's entire investment is at risk. They price that in — hard.</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'custConc','diversified')">
+            <input type="radio" name="custConc" value="diversified">
+            <div class="option-check"></div>
+            <div class="option-card-label">Diversified</div>
+            <div class="option-card-sub">No single client over 10% of revenue</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'custConc','moderate')">
+            <input type="radio" name="custConc" value="moderate">
+            <div class="option-check"></div>
+            <div class="option-card-label">Moderate</div>
+            <div class="option-card-sub">Top client is 10–25% of revenue</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'custConc','concentrated')">
+            <input type="radio" name="custConc" value="concentrated">
+            <div class="option-check"></div>
+            <div class="option-card-label">Concentrated</div>
+            <div class="option-card-sub">Top client is 25–50% of revenue</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'custConc','very_concentrated')">
+            <input type="radio" name="custConc" value="very_concentrated">
+            <div class="option-check"></div>
+            <div class="option-card-label">Very Concentrated</div>
+            <div class="option-card-sub">One client is 50%+ of revenue</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <button class="btn-next" onclick="nextStep()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ STEP 4: FINANCIALS & READINESS ═══════════════ -->
+  <div class="step-panel" data-step="4">
+    <div class="step-header">
+      <div class="step-eyebrow">Section 4 of 5</div>
+      <h2>Financial Clarity &amp; <em>Readiness</em></h2>
+      <p>Clean financials and a clear picture of what you want are non-negotiable. This is where most deals fall apart — before they even start.</p>
+    </div>
+    <div class="gold-rule"></div>
+    <div class="step-body">
+
+      <div class="field-group">
+        <div class="field-label">How clean and separated are your personal and business finances?
+          <span class="risk-tag high">Due diligence risk</span>
+        </div>
+        <div class="field-hint">Commingled finances are the #1 reason deals die in due diligence. Buyers walk or slash the offer.</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'finances','clean')">
+            <input type="radio" name="finances" value="clean">
+            <div class="option-check"></div>
+            <div class="option-card-label">Completely separated</div>
+            <div class="option-card-sub">Clean books, no personal mixing</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'finances','mostly')">
+            <input type="radio" name="finances" value="mostly">
+            <div class="option-check"></div>
+            <div class="option-card-label">Mostly clean</div>
+            <div class="option-card-sub">Minor overlap that could be cleaned up</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'finances','mixed')">
+            <input type="radio" name="finances" value="mixed">
+            <div class="option-check"></div>
+            <div class="option-card-label">Somewhat mixed</div>
+            <div class="option-card-sub">Personal expenses run through the business</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'finances','very_mixed')">
+            <input type="radio" name="finances" value="very_mixed">
+            <div class="option-check"></div>
+            <div class="option-card-label">Very intertwined</div>
+            <div class="option-card-sub">Hard to separate what's business vs. personal</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Do you know your current EBITDA number?
+          <span class="risk-tag med">Negotiation readiness</span>
+        </div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'knowEbitda','yes_exact')">
+            <input type="radio" name="knowEbitda" value="yes_exact">
+            <div class="option-check"></div>
+            <div class="option-card-label">Yes — exact number</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'knowEbitda','yes_approx')">
+            <input type="radio" name="knowEbitda" value="yes_approx">
+            <div class="option-check"></div>
+            <div class="option-card-label">Roughly — ballpark figure</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'knowEbitda','no')">
+            <input type="radio" name="knowEbitda" value="no">
+            <div class="option-check"></div>
+            <div class="option-card-label">No — I'd have to look it up</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'knowEbitda','unsure_what')">
+            <input type="radio" name="knowEbitda" value="unsure_what">
+            <div class="option-check"></div>
+            <div class="option-card-label">I'm not sure what EBITDA means</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Have you received any offers or inquiries about buying your business?</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'inbound','yes_multiple')">
+            <input type="radio" name="inbound" value="yes_multiple">
+            <div class="option-check"></div>
+            <div class="option-card-label">Yes — multiple approaches</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'inbound','yes_one')">
+            <input type="radio" name="inbound" value="yes_one">
+            <div class="option-check"></div>
+            <div class="option-card-label">Yes — one or two</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'inbound','no')">
+            <input type="radio" name="inbound" value="no">
+            <div class="option-check"></div>
+            <div class="option-card-label">No inquiries yet</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'inbound','not_looking')">
+            <input type="radio" name="inbound" value="not_looking">
+            <div class="option-check"></div>
+            <div class="option-card-label">Not actively looking yet</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Have you worked with an M&A advisor or exit planner before?</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'priorAdvisor','no')">
+            <input type="radio" name="priorAdvisor" value="no">
+            <div class="option-check"></div>
+            <div class="option-card-label">No — this is my first time</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'priorAdvisor','exploring')">
+            <input type="radio" name="priorAdvisor" value="exploring">
+            <div class="option-check"></div>
+            <div class="option-card-label">I'm interviewing advisors now</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'priorAdvisor','yes_good')">
+            <input type="radio" name="priorAdvisor" value="yes_good">
+            <div class="option-check"></div>
+            <div class="option-card-label">Yes — good experience</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'priorAdvisor','yes_bad')">
+            <input type="radio" name="priorAdvisor" value="yes_bad">
+            <div class="option-check"></div>
+            <div class="option-card-label">Yes — disappointed in the result</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <button class="btn-next" onclick="nextStep()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ STEP 5: MINDSET & GOALS ═══════════════ -->
+  <div class="step-panel" data-step="5">
+    <div class="step-header">
+      <div class="step-eyebrow">Section 5 of 5 — Last Step</div>
+      <h2>Your Mindset &amp; <em>What You Want</em></h2>
+      <p>The deal you get isn't just about the business — it's about you. What you're willing to do, what you fear, and what success actually looks like.</p>
+    </div>
+    <div class="gold-rule"></div>
+    <div class="step-body">
+
+      <div class="field-group">
+        <div class="field-label">When you think about life after this business — does that picture feel clear?
+          <span class="risk-tag med">Post-exit readiness</span>
+        </div>
+        <div class="field-hint">75% of owners who sell profoundly regret it within 12 months — not because of the money, but because nobody prepared them for who they'd be without the business.</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'postExit','clear')">
+            <input type="radio" name="postExit" value="clear">
+            <div class="option-check"></div>
+            <div class="option-card-label">Clear picture</div>
+            <div class="option-card-sub">I know what I'd do next</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'postExit','vague')">
+            <input type="radio" name="postExit" value="vague">
+            <div class="option-check"></div>
+            <div class="option-card-label">Some ideas, nothing concrete</div>
+            <div class="option-card-sub">Haven't formalized a plan</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'postExit','blank')">
+            <input type="radio" name="postExit" value="blank">
+            <div class="option-check"></div>
+            <div class="option-card-label">Blank page</div>
+            <div class="option-card-sub">The business is my identity</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-divider"></div>
+
+      <div class="field-group">
+        <div class="field-label">What's your biggest fear about selling?
+          <span class="risk-tag med">Shapes our approach</span>
+        </div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'fear','low_price')">
+            <input type="radio" name="fear" value="low_price">
+            <div class="option-check"></div>
+            <div class="option-card-label">Getting a low offer</div>
+            <div class="option-card-sub">Not getting what the business is worth</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'fear','taken_advantage')">
+            <input type="radio" name="fear" value="taken_advantage">
+            <div class="option-check"></div>
+            <div class="option-card-label">Being taken advantage of</div>
+            <div class="option-card-sub">Wrong buyer, bad deal structure</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'fear','legacy')">
+            <input type="radio" name="fear" value="legacy">
+            <div class="option-check"></div>
+            <div class="option-card-label">Losing my legacy</div>
+            <div class="option-card-sub">Name, people, and culture dismantled</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'fear','employees')">
+            <input type="radio" name="fear" value="employees">
+            <div class="option-check"></div>
+            <div class="option-card-label">What happens to my employees</div>
+            <div class="option-card-sub">Team members who've been here for years</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'fear','identity')">
+            <input type="radio" name="fear" value="identity">
+            <div class="option-check"></div>
+            <div class="option-card-label">Who am I after this?</div>
+            <div class="option-card-sub">Purpose, identity, what's next</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'fear','none')">
+            <input type="radio" name="fear" value="none">
+            <div class="option-check"></div>
+            <div class="option-card-label">I don't have major fears</div>
+            <div class="option-card-sub">Approaching this with clarity</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">How committed are you to doing the work required to prepare your business?
+          <span class="risk-tag high">Makes or breaks outcomes</span>
+        </div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOption(this,'willingness','fully')">
+            <input type="radio" name="willingness" value="fully">
+            <div class="option-check"></div>
+            <div class="option-card-label">Fully committed</div>
+            <div class="option-card-sub">I'll do whatever it takes to get this right</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'willingness','mostly')">
+            <input type="radio" name="willingness" value="mostly">
+            <div class="option-check"></div>
+            <div class="option-card-label">Mostly committed</div>
+            <div class="option-card-sub">Open to it but want to understand the ask first</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'willingness','passive')">
+            <input type="radio" name="willingness" value="passive">
+            <div class="option-check"></div>
+            <div class="option-card-label">I want someone to handle it for me</div>
+            <div class="option-card-sub">Looking for a mostly hands-off approach</div>
+          </div>
+          <div class="option-card" onclick="selectOption(this,'willingness','resistant')">
+            <input type="radio" name="willingness" value="resistant">
+            <div class="option-check"></div>
+            <div class="option-card-label">I don't want to change much</div>
+            <div class="option-card-sub">The way we operate is fine</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">What does a successful exit look like to you?</div>
+        <div class="field-hint">Be specific — what matters most? Price, speed, terms, what happens after?</div>
+        <textarea id="successNote" placeholder="e.g. I want to get full value for what I built, protect my team, and not be tied to the business for more than 12 months after close..."></textarea>
+      </div>
+
+      <div class="field-group">
+        <div class="field-label">Anything else we should know before your call?</div>
+        <textarea id="extraNote" placeholder="Specific concerns, prior conversations, context about the business situation..."></textarea>
+      </div>
+
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <button class="btn-next submit" onclick="submitForm()">Get My Risk Report →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ RESULT PANEL ═══════════════ -->
   <div id="resultPanel">
+
+    <!-- RESULT HEADER -->
     <div id="resultHeader" class="result-header high">
       <div id="resultBadge" class="result-badge high">● High Risk</div>
       <div class="result-score-wrap">
@@ -904,27 +1440,74 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
           <div class="result-score-of">/ 100</div>
         </div>
       </div>
-      <h2 id="resultTitle">Assessment Complete</h2>
+      <h2 id="resultTitle">Your business has <em>several risk factors</em> buyers will use against you.</h2>
+      <p id="resultSub"></p>
     </div>
     <div class="gold-rule"></div>
+
     <div class="result-body">
+
+      <!-- CONFIRMATION BAND -->
       <div class="confirm-band">
         <div class="confirm-icon">✓</div>
-        <p id="confirmText">Your assessment is complete. Your risk report is ready.</p>
+        <p id="confirmText">Your call is confirmed. <strong>Your advisor has received your risk report</strong> and will come prepared to address each of these areas specifically. Check your email for a copy of this report.</p>
       </div>
+
+      <!-- SCORE BREAKDOWN -->
+      <div class="breakdown-section">
+        <div class="breakdown-title">Your Risk Factor Breakdown</div>
+        <div id="scoreBreakdown"></div>
+      </div>
+
+      <!-- RISK FLAGS -->
+      <div class="risk-callouts" id="riskCallouts"></div>
+
+      <!-- CALL PREP BOX -->
+      <div class="call-prep-box" id="callPrepBox"></div>
+
+      <!-- EMAIL PREVIEW -->
+      <div class="delivery-box">
+        <div class="delivery-box-header">
+          <div class="delivery-icon">✉</div>
+          <div>
+            <h4>Your Report — Sent to <span id="emailDisplay"></span></h4>
+            <span>Exit Risk Report · The Arena</span>
+          </div>
+        </div>
+        <div class="delivery-preview" id="emailPreview"></div>
+      </div>
+
+      <!-- SMS PREVIEW -->
+      <div class="sms-wrap">
+        <div class="sms-preview" id="smsPreview"></div>
+      </div>
+
+      <!-- RESTART -->
       <div class="restart-wrap">
         <button class="btn-restart" onclick="restartForm()">↺ Start Over</button>
       </div>
+
     </div>
   </div>
 
-</div>
-</div>
+</div><!-- /form-card -->
+</div><!-- /form-outer -->
 
 <script>
+// ── STATE ──────────────────────────────────────────────────────────
 const answers = {};
 let currentStep = 1;
+const totalSteps = 5;
 
+const stepLabels = [
+  'Section 1 of 5 — Your Info',
+  'Section 2 of 5 — Timeline & Exit Plan',
+  'Section 3 of 5 — Business Health',
+  'Section 4 of 5 — Financial Clarity',
+  'Section 5 of 5 — Mindset & Goals'
+];
+
+// ── OPTION CARDS ───────────────────────────────────────────────────
 function selectOption(card, field, value) {
   const group = card.closest('.options-grid');
   group.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
@@ -932,36 +1515,248 @@ function selectOption(card, field, value) {
   answers[field] = value;
 }
 
-function nextStep() {
-  showStep(currentStep + 1);
-}
-
+// ── NAVIGATION ─────────────────────────────────────────────────────
 function showStep(n) {
   document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
   const panel = document.querySelector(`.step-panel[data-step="${n}"]`);
-  if (panel) {
-    panel.classList.add('active');
-    currentStep = n;
-  } else {
-    // Show result after step 5 (simplified)
-    submitForm();
-  }
-}
-
-function submitForm() {
-  document.getElementById('resultPanel').classList.add('active');
-  document.getElementById('scoreNum').textContent = Math.round(Math.random() * 100);
+  if (panel) panel.classList.add('active');
+  currentStep = n;
+  updateProgress();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+function nextStep() {
+  if (currentStep < totalSteps) showStep(currentStep + 1);
+}
+
+function prevStep() {
+  if (currentStep > 1) showStep(currentStep - 1);
+}
+
+function updateProgress() {
+  const pct = ((currentStep - 1) / totalSteps) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('stepLabel').textContent = stepLabels[currentStep - 1] || 'Assessment Complete';
+  document.getElementById('stepCount').textContent = `Step ${currentStep} / ${totalSteps}`;
+}
+
+// ── SCORE CALCULATION (RISK: higher = more risk) ───────────────────
+function calculateRisk() {
+  let total = 0;
+  const breakdown = [];
+  const flags = [];
+
+  // ── OWNER DEPENDENCY (0–25) — #1 multiple killer
+  const rwMap = { no: 25, maybe: 14, yes: 2 };
+  const rwScore = rwMap[answers.runWithout] ?? 12;
+  const rwPct = Math.round((rwScore / 25) * 100);
+  const rwColor = rwScore >= 18 ? 'red' : rwScore >= 10 ? 'amber' : 'green';
+  breakdown.push({ label: 'Owner / Key-Man Dependency', score: rwScore, max: 25, color: rwColor });
+  if (answers.runWithout === 'no') flags.push({ color: 'red', text: 'Critical: The business cannot run without you. This is the single biggest discount buyers apply. If you left tomorrow, revenue would follow you — and buyers know it.' });
+  else if (answers.runWithout === 'maybe') flags.push({ color: 'amber', text: 'Moderate risk: The business would struggle without you present. A buyer will price in transition risk and likely require an earnout or extended stay.' });
+  total += rwScore;
+
+  // ── CUSTOMER CONCENTRATION (0–20)
+  const ccMap = { very_concentrated: 20, concentrated: 13, moderate: 6, diversified: 0 };
+  const ccScore = ccMap[answers.custConc] ?? 10;
+  const ccPct = Math.round((ccScore / 20) * 100);
+  const ccColor = ccScore >= 14 ? 'red' : ccScore >= 7 ? 'amber' : 'green';
+  breakdown.push({ label: 'Customer Concentration Risk', score: ccScore, max: 20, color: ccColor });
+  if (answers.custConc === 'very_concentrated') flags.push({ color: 'red', text: 'Deal-breaker risk: One client represents 50%+ of your revenue. If they leave post-close, the buyer\'s investment collapses. This alone can kill a deal or slash your multiple by 2–3x.' });
+  else if (answers.custConc === 'concentrated') flags.push({ color: 'amber', text: 'Significant risk: Your top client concentration will raise red flags in due diligence. Buyers will build this into their offer as a hedge.' });
+  total += ccScore;
+
+  // ── EBITDA TREND (0–15)
+  const eMap = { declining: 15, stable: 6, growing: 0 };
+  const eScore = eMap[answers.ebitda] ?? 8;
+  const eColor = eScore >= 12 ? 'red' : eScore >= 5 ? 'amber' : 'green';
+  breakdown.push({ label: 'EBITDA Trajectory', score: eScore, max: 15, color: eColor });
+  if (answers.ebitda === 'declining') flags.push({ color: 'red', text: 'High risk: Declining EBITDA tells buyers the business is getting weaker. They will either walk, apply a distress discount, or use it to renegotiate after due diligence.' });
+  total += eScore;
+
+  // ── SOPs / DOCUMENTATION (0–15)
+  const sopMap = { no: 15, partial: 8, yes_full: 1 };
+  const sopScore = sopMap[answers.sops] ?? 8;
+  const sopColor = sopScore >= 12 ? 'red' : sopScore >= 6 ? 'amber' : 'green';
+  breakdown.push({ label: 'Operational Documentation (SOPs)', score: sopScore, max: 15, color: sopColor });
+  if (answers.sops === 'no') flags.push({ color: 'amber', text: 'No documented SOPs: Every process lives in someone\'s head. When they leave, value walks out with them. Buyers see this as a hidden liability and will price it accordingly.' });
+  total += sopScore;
+
+  // ── SUCCESSION PLAN (0–10)
+  const spMap = { no: 10, unsure: 9, yes_partial: 4, yes_full: 0 };
+  const spScore = spMap[answers.succPlan] ?? 5;
+  const spColor = spScore >= 8 ? 'red' : spScore >= 4 ? 'amber' : 'green';
+  breakdown.push({ label: 'Succession & Transition Plan', score: spScore, max: 10, color: spColor });
+  if (answers.succPlan === 'no' || answers.succPlan === 'unsure') flags.push({ color: 'amber', text: 'No succession plan: Buyers want to know the business doesn\'t collapse during handover. Without a plan, they assume the worst — and charge you for it.' });
+  total += spScore;
+
+  // ── FINANCIAL CLARITY (0–10)
+  const finMap = { very_mixed: 10, mixed: 7, mostly: 3, clean: 0 };
+  const finScore = finMap[answers.finances] ?? 5;
+  const finColor = finScore >= 8 ? 'red' : finScore >= 4 ? 'amber' : 'green';
+  breakdown.push({ label: 'Financial Cleanliness', score: finScore, max: 10, color: finColor });
+  if (answers.finances === 'very_mixed' || answers.finances === 'mixed') flags.push({ color: 'red', text: 'Commingled finances: Personal and business money mixing is the #1 reason deals die in due diligence. Buyers see it as a red flag and will often walk or reopen price negotiations.' });
+  total += finScore;
+
+  // ── TIMELINE URGENCY (0–5)
+  const tlMap = { asap: 5, '1to3': 3, '3to5': 1, over5: 0 };
+  const tlScore = tlMap[answers.timeline] ?? 3;
+  const tlColor = tlScore >= 4 ? 'amber' : 'green';
+  breakdown.push({ label: 'Timeline Urgency vs. Preparation', score: tlScore, max: 5, color: tlColor });
+  if (answers.timeline === 'asap') flags.push({ color: 'amber', text: 'Urgent timeline: The less time you have, the more leverage buyers hold. Urgency without preparation is the formula for a bad deal.' });
+  total += tlScore;
+
+  return { total, breakdown, flags };
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────
+function submitForm() {
+  answers.successNote = document.getElementById('successNote').value;
+  answers.extraNote = document.getElementById('extraNote').value;
+
+  const { total, breakdown, flags } = calculateRisk();
+
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('stepLabel').textContent = 'Risk Assessment Complete';
+  document.getElementById('stepCount').textContent = '';
+
+  const panel = document.getElementById('resultPanel');
+  panel.style.display = 'block';
+  setTimeout(() => panel.classList.add('active'), 10);
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Animate score
+  const scoreEl = document.getElementById('scoreNum');
+  let n = 0;
+  const interval = setInterval(() => {
+    n = Math.min(n + 2, total);
+    scoreEl.textContent = n;
+    if (n >= total) clearInterval(interval);
+  }, 18);
+
+  // Determine risk band
+  let band, headerClass, badgeClass, badgeText, title, sub;
+  const name = answers.ownerName ? answers.ownerName.split(' ')[0] : 'there';
+
+  if (total <= 20) {
+    band = 'low';
+    headerClass = badgeClass = 'low';
+    badgeText = '● Low Risk — Transferable & Exit Ready';
+    title = `${name}, your business is in <em>stronger shape</em> than most.`;
+    sub = `With a risk score of ${total}/100, your Transferable Enterprise Value — what a buyer would actually pay — is close to your full enterprise value. That said, every business has room to optimize — and our call will map out where to push for maximum value.`;
+  } else if (total <= 45) {
+    band = 'moderate';
+    headerClass = badgeClass = 'moderate';
+    badgeText = '◐ Moderate Risk — Not Yet Transferable';
+    title = `${name}, you have <em>real risk factors</em> a buyer will use against you.`;
+    sub = `With a risk score of ${total}/100, your Transferable Enterprise Value is likely 30-50% below your total enterprise value. The issues flagged below are exactly what buyers use to justify a lower offer. The Transferable Exit System addresses each one — our call will map out the timeline.`;
+  } else if (total <= 70) {
+    band = 'high';
+    headerClass = badgeClass = 'high';
+    badgeText = '▲ High Risk — Significant Transferability Gaps';
+    title = `${name}, several factors will <em>significantly discount your multiple</em> — or kill the deal.`;
+    sub = `With a risk score of ${total}/100, your Transferable Enterprise Value is significantly below what this business is actually worth. If you went to market today, you'd either get a low offer or face renegotiation after due diligence. The Transferable Exit System is designed to close exactly this kind of gap — our call will show you how.`;
+  } else {
+    band = 'critical';
+    headerClass = badgeClass = 'critical';
+    badgeText = '✕ Critical Risk — Not Transferable';
+    title = `${name}, in its current state, this business <em>will struggle to sell</em> — or sell far below value.`;
+    sub = `With a risk score of ${total}/100, in its current state, your Transferable Enterprise Value is a fraction of what this business could be worth. Buyers will see these issues and either walk or structure a deal that protects them at your expense. This is not permanent — the Transferable Exit System has turned businesses like yours around. Our call is the first step.`;
+  }
+
+  document.getElementById('resultHeader').className = 'result-header ' + headerClass;
+  const badge = document.getElementById('resultBadge');
+  badge.className = 'result-badge ' + badgeClass;
+  badge.textContent = badgeText;
+  document.getElementById('resultTitle').innerHTML = title;
+  document.getElementById('resultSub').textContent = sub;
+
+  // Confirmation text
+  document.getElementById('confirmText').innerHTML = `Your call is confirmed and your advisor has received this report. <strong>Come prepared to discuss these risk areas directly.</strong> A copy of this report has been sent to ${answers.email || 'your email'}.`;
+
+  // Score breakdown
+  const breakdownEl = document.getElementById('scoreBreakdown');
+  breakdownEl.innerHTML = breakdown.map(b => `
+    <div class="score-row">
+      <div class="score-row-label">${b.label}</div>
+      <div class="score-row-bar-bg"><div class="score-row-bar-fill ${b.color}" style="width:0%" data-pct="${Math.round((b.score/b.max)*100)}"></div></div>
+      <div class="score-row-pts">${b.score} / ${b.max}</div>
+    </div>
+  `).join('');
+  setTimeout(() => {
+    document.querySelectorAll('.score-row-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }, 200);
+
+  // Risk flags
+  const riskEl = document.getElementById('riskCallouts');
+  if (flags.length > 0) {
+    riskEl.innerHTML = `<div class="breakdown-title" style="margin-bottom:12px;">Risk Flags to Address on Your Call</div>` +
+      flags.map(f => `<div class="risk-flag ${f.color}"><div class="flag-dot ${f.color}"></div>${f.text}</div>`).join('');
+  } else {
+    riskEl.innerHTML = `<div class="risk-flag green"><div class="flag-dot green"></div>No critical risk flags identified. You're in solid shape — our call will focus on optimization and maximizing your multiple.</div>`;
+  }
+
+  // Call prep box
+  const topIssues = breakdown.filter(b => b.score / b.max >= 0.5).slice(0, 3).map(b => b.label);
+  const prepEl = document.getElementById('callPrepBox');
+  prepEl.innerHTML = `
+    <div class="box-eyebrow">Before Your Call</div>
+    <h3>What Your Advisor Will Cover</h3>
+    <p>Your advisor has reviewed this report. Here's what to expect — and what to bring:</p>
+    <ul>
+      ${topIssues.length > 0 ? topIssues.map(i => `<li>We'll address your risk in: <strong style="color:var(--gold2)">${i}</strong></li>`).join('') : '<li>Walk through your exit readiness score and what it means for your multiple</li>'}
+      <li>How the Transferable Exit System addresses each risk factor</li>
+      <li>A realistic timeline — and what a self-funded, structured exit looks like</li>
+      <li>Whether the Transferable Exit System is right for your situation</li>
+    </ul>
+  `;
+
+  // Email preview
+  const emailEl = document.getElementById('emailPreview');
+  const company = answers.companyName || 'your business';
+  emailEl.innerHTML = `<strong>Subject: Your Exit Risk Report — ${company}</strong>
+
+Hi ${name},
+
+You just completed your Exit Risk Assessment ahead of your call with The Arena.
+
+Here's your summary:
+
+Exit Risk Score: ${total} / 100 — ${band.charAt(0).toUpperCase() + band.slice(1)} Risk
+
+${flags.length > 0 ? 'Top risk factors identified:\n' + flags.map((f, i) => `${i+1}. ${f.text.split(':')[0]}`).join('\n') : 'No critical risk flags — strong baseline.'}
+
+Your advisor will be prepared to address each of these directly on your call. Come ready to have an honest conversation about what's working against you — and what we can do about it.
+
+See you soon.
+
+— The Arena Team`;
+
+  // Email display
+  document.getElementById('emailDisplay').textContent = answers.email || 'your email';
+
+  // SMS preview
+  const smsEl = document.getElementById('smsPreview');
+  const riskWord = band === 'low' ? 'low' : band === 'moderate' ? 'moderate' : band === 'high' ? 'high' : 'critical';
+  smsEl.innerHTML = `The Arena Partners: Hey ${name}, your Exit Risk Report is ready — Risk Score: ${total}/100 (${riskWord} risk). Your advisor has seen it. Your call is confirmed. Reply STOP to opt out.`;
+}
+
+// ── RESTART ────────────────────────────────────────────────────────
 function restartForm() {
   Object.keys(answers).forEach(k => delete answers[k]);
   document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-  document.querySelectorAll('input').forEach(i => i.value = '');
+  document.querySelectorAll('input[type=radio]').forEach(i => i.checked = false);
+  document.querySelectorAll('textarea, input[type=text], input[type=email], input[type=tel]').forEach(i => i.value = '');
+  document.getElementById('resultPanel').style.display = 'none';
   document.getElementById('resultPanel').classList.remove('active');
-  currentStep = 1;
   showStep(1);
 }
+
+// Init
+updateProgress();
 </script>
 </body>
 </html>
