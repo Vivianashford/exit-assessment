@@ -1742,6 +1742,183 @@ See you soon.
   const smsEl = document.getElementById('smsPreview');
   const riskWord = band === 'low' ? 'low' : band === 'moderate' ? 'moderate' : band === 'high' ? 'high' : 'critical';
   smsEl.innerHTML = `The Arena Partners: Hey ${name}, your Exit Risk Report is ready — Risk Score: ${total}/100 (${riskWord} risk). Your advisor has seen it. Your call is confirmed. Reply STOP to opt out.`;
+
+  // ── GHL INTEGRATION ─────────────────────────────────────────────
+  const ghlHeaders = {
+    'Authorization': 'Bearer pit-690b376c-5ac2-48a3-b38c-b4be0ab4a42f',
+    'Version': '2021-07-28',
+    'Content-Type': 'application/json'
+  };
+
+  // Custom field IDs
+  const customFields = {
+    exit_risk_score: 'sUU2ZUZECGrTvWps4Dfj',
+    exit_risk_level: 'jyOd8Q5M84cB2PRSLcIX',
+    owner_dependency: 'vdvGRAHf8T1RdLfldf1t',
+    customer_concentration: 'Fk9nspd19x7GasRFq3zR',
+    ebitda_trajectory: '7CfqewEjM4NUtBQM5jQF',
+    sop_documentation: 'KL5bNHoaf6R6AMKCBDjk',
+    succession_plan: 'jZ2zfCq71EkauKleJXNO',
+    financial_cleanliness: 'XZs8Hoc1fy1RLA7OeGYl',
+    exit_timeline: 'H5eOPZ9cNHpPRkKeBeOF',
+    assessment_completed: 'Pm5kPrfgbh5unB9ZUeS5'
+  };
+
+  // Build custom field values from breakdown
+  const scoreMap = {};
+  breakdown.forEach(b => {
+    if (b.label.includes('Owner')) scoreMap.owner_dependency = b.score;
+    if (b.label.includes('Customer')) scoreMap.customer_concentration = b.score;
+    if (b.label.includes('EBITDA')) scoreMap.ebitda_trajectory = b.score;
+    if (b.label.includes('Documentation') || b.label.includes('SOP')) scoreMap.sop_documentation = b.score;
+    if (b.label.includes('Succession')) scoreMap.succession_plan = b.score;
+    if (b.label.includes('Financial')) scoreMap.financial_cleanliness = b.score;
+    if (b.label.includes('Timeline')) scoreMap.exit_timeline = b.score;
+  });
+
+  const customFieldData = [
+    { id: customFields.exit_risk_score, value: total },
+    { id: customFields.exit_risk_level, value: band.charAt(0).toUpperCase() + band.slice(1) + ' Risk (' + total + '/100)' },
+    { id: customFields.owner_dependency, value: scoreMap.owner_dependency || 0 },
+    { id: customFields.customer_concentration, value: scoreMap.customer_concentration || 0 },
+    { id: customFields.ebitda_trajectory, value: scoreMap.ebitda_trajectory || 0 },
+    { id: customFields.sop_documentation, value: scoreMap.sop_documentation || 0 },
+    { id: customFields.succession_plan, value: scoreMap.succession_plan || 0 },
+    { id: customFields.financial_cleanliness, value: scoreMap.financial_cleanliness || 0 },
+    { id: customFields.exit_timeline, value: scoreMap.exit_timeline || 0 },
+    { id: customFields.assessment_completed, value: new Date().toISOString().split('T')[0] }
+  ];
+
+  // Upsert contact with assessment data + tag
+  if (answers.email) {
+    const nameParts = (answers.ownerName || '').split(' ');
+    fetch('https://services.leadconnectorhq.com/contacts/upsert', {
+      method: 'POST',
+      headers: ghlHeaders,
+      body: JSON.stringify({
+        firstName: nameParts[0] || '',
+        lastName: nameParts.slice(1).join(' ') || '',
+        email: answers.email,
+        companyName: answers.companyName || '',
+        locationId: '2POUoPWRXgWKwsN61Q5g',
+        tags: ['assessment-complete'],
+        customFields: customFieldData
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      const contactId = data.contact ? data.contact.id : data.contactId;
+      if (!contactId) return;
+
+      // Add detailed note with full assessment results
+      const noteBody = `EXIT RISK ASSESSMENT COMPLETED\n` +
+        `Score: ${total}/100 — ${band.toUpperCase()} RISK\n\n` +
+        `BREAKDOWN:\n` +
+        breakdown.map(b => `  ${b.label}: ${b.score}/${b.max} (${b.color})`).join('\n') + '\n\n' +
+        (flags.length > 0 ? `FLAGS:\n` + flags.map(f => `  [${f.color.toUpperCase()}] ${f.text}`).join('\n') + '\n\n' : '') +
+        `Notes: ${answers.extraNote || 'None'}\n` +
+        `Success definition: ${answers.successNote || 'None'}`;
+
+      fetch('https://services.leadconnectorhq.com/contacts/' + contactId + '/notes', {
+        method: 'POST',
+        headers: ghlHeaders,
+        body: JSON.stringify({ body: noteBody })
+      });
+
+      // Send results email to the LEAD
+      const leadResultHtml = `
+      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#f5f0e8;padding:40px;">
+        <div style="text-align:center;margin-bottom:30px;">
+          <h1 style="font-family:Georgia,serif;color:#c9a84c;font-size:24px;margin:0;">Your Exit Risk Report</h1>
+          <p style="color:#9a9590;margin-top:8px;">The Arena Partners</p>
+        </div>
+        <p style="font-size:16px;line-height:1.6;">Hi ${name},</p>
+        <p style="font-size:16px;line-height:1.7;color:#9a9590;">You just completed your Exit Risk Assessment. Here's your summary:</p>
+        <div style="text-align:center;margin:30px 0;padding:30px;background:#161616;border:1px solid rgba(201,168,76,0.15);border-radius:12px;">
+          <div style="font-family:Georgia,serif;font-size:48px;font-weight:800;color:#c9a84c;">${total}<span style="font-size:24px;color:#6b6560;">/100</span></div>
+          <div style="font-size:14px;color:#9a9590;margin-top:8px;text-transform:uppercase;letter-spacing:2px;">${band} risk</div>
+        </div>
+        <div style="margin:20px 0;">
+          ${breakdown.map(b => `
+          <div style="margin:12px 0;padding:12px 16px;background:#161616;border-radius:8px;border-left:3px solid ${b.color === 'red' ? '#c44b3f' : b.color === 'amber' ? '#d4a43b' : '#4a9e6e'};">
+            <div style="display:flex;justify-content:space-between;">
+              <span style="color:#f5f0e8;font-weight:600;">${b.label}</span>
+              <span style="color:#c9a84c;font-weight:700;">${b.score}/${b.max}</span>
+            </div>
+          </div>`).join('')}
+        </div>
+        ${flags.length > 0 ? `
+        <div style="margin:24px 0;">
+          <p style="color:#c9a84c;font-weight:700;">Risk Flags:</p>
+          ${flags.map(f => `<p style="color:#9a9590;margin:8px 0;padding-left:12px;border-left:2px solid ${f.color === 'red' ? '#c44b3f' : '#d4a43b'};">${f.text}</p>`).join('')}
+        </div>` : ''}
+        <p style="font-size:16px;line-height:1.7;color:#9a9590;">Your advisor has received this report and will be prepared to discuss each risk factor on your call. Come ready for an honest conversation about what's working against you — and what we can do about it.</p>
+        <hr style="border:none;border-top:1px solid rgba(201,168,76,0.12);margin:30px 0;">
+        <p style="color:#6b6560;font-size:11px;text-align:center;">The Arena Partners / Arena Business Advisors, LLC<br>3555 Timmons Lane, Suite 1140, Houston, TX 77027</p>
+      </div>`;
+
+      fetch('https://services.leadconnectorhq.com/conversations/messages', {
+        method: 'POST',
+        headers: ghlHeaders,
+        body: JSON.stringify({
+          type: 'Email',
+          contactId: contactId,
+          subject: 'Your Exit Risk Report — ' + (answers.companyName || 'Assessment Results'),
+          html: leadResultHtml
+        })
+      });
+
+      // Send results email to Jean (the rep)
+      fetch('https://services.leadconnectorhq.com/contacts/upsert', {
+        method: 'POST',
+        headers: ghlHeaders,
+        body: JSON.stringify({
+          firstName: 'Jean',
+          lastName: 'Hardy',
+          email: 'SeanHardy@Trek1Capital.com',
+          locationId: '2POUoPWRXgWKwsN61Q5g',
+          tags: ['internal-notify'],
+          source: 'System'
+        })
+      }).then(r => r.json()).then(jd => {
+        const jeanId = jd.contact ? jd.contact.id : jd.contactId;
+        if (!jeanId) return;
+
+        const repHtml = `
+        <div style="font-family:Arial,sans-serif;max-width:600px;padding:30px;background:#0a0a0a;color:#f5f0e8;">
+          <h2 style="color:#c9a84c;margin-top:0;">Assessment Completed: ${answers.ownerName || 'Unknown'}</h2>
+          <div style="background:#161616;border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:20px;margin:16px 0;">
+            <p style="margin:6px 0;"><strong style="color:#c9a84c;">Name:</strong> ${answers.ownerName || 'N/A'}</p>
+            <p style="margin:6px 0;"><strong style="color:#c9a84c;">Email:</strong> ${answers.email || 'N/A'}</p>
+            <p style="margin:6px 0;"><strong style="color:#c9a84c;">Company:</strong> ${answers.companyName || 'N/A'}</p>
+            <p style="margin:6px 0;"><strong style="color:#c9a84c;">Score:</strong> <span style="font-size:24px;font-weight:800;">${total}/100</span> — ${band.toUpperCase()} RISK</p>
+          </div>
+          <div style="margin:16px 0;">
+            ${breakdown.map(b => `<p style="margin:4px 0;color:${b.color === 'red' ? '#c44b3f' : b.color === 'amber' ? '#d4a43b' : '#4a9e6e'};">■ ${b.label}: ${b.score}/${b.max}</p>`).join('')}
+          </div>
+          ${flags.length > 0 ? `<div style="background:rgba(196,75,63,0.1);border:1px solid rgba(196,75,63,0.2);border-radius:8px;padding:16px;margin:16px 0;">
+            <p style="color:#c44b3f;font-weight:700;margin:0 0 8px;">Key flags to discuss:</p>
+            ${flags.map(f => `<p style="color:#9a9590;margin:4px 0;font-size:13px;">• ${f.text.split('.')[0]}.</p>`).join('')}
+          </div>` : ''}
+          ${answers.successNote ? `<p style="margin-top:16px;"><strong style="color:#c9a84c;">What success looks like to them:</strong><br><span style="color:#9a9590;">${answers.successNote}</span></p>` : ''}
+          ${answers.extraNote ? `<p><strong style="color:#c9a84c;">Additional notes:</strong><br><span style="color:#9a9590;">${answers.extraNote}</span></p>` : ''}
+          <p style="color:#6b6560;font-size:11px;margin-top:20px;">Arena Follow-Up System — Assessment notification</p>
+        </div>`;
+
+        fetch('https://services.leadconnectorhq.com/conversations/messages', {
+          method: 'POST',
+          headers: ghlHeaders,
+          body: JSON.stringify({
+            type: 'Email',
+            contactId: jeanId,
+            subject: 'Assessment Complete: ' + (answers.ownerName || 'Unknown') + ' — ' + total + '/100 (' + band + ' risk)',
+            html: repHtml
+          })
+        });
+      });
+    })
+    .catch(err => console.error('GHL assessment error:', err));
+  }
 }
 
 // ── RESTART ────────────────────────────────────────────────────────
