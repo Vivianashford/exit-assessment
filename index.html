@@ -1864,6 +1864,7 @@ See you soon.
           type: 'Email',
           contactId: contactId,
           subject: 'Your Exit Risk Report — ' + (answers.companyName || 'Assessment Results'),
+          emailFrom: 'The Arena Partners <support@thearenapartners.com>',
           html: leadResultHtml
         })
       });
@@ -1912,6 +1913,7 @@ See you soon.
             type: 'Email',
             contactId: jeanId,
             subject: 'Assessment Complete: ' + (answers.ownerName || 'Unknown') + ' — ' + total + '/100 (' + band + ' risk)',
+            emailFrom: 'The Arena Partners <support@thearenapartners.com>',
             html: repHtml
           })
         });
