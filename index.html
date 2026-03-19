@@ -193,6 +193,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 .field-label .required {
   color: var(--gold);
@@ -462,9 +463,130 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
 /* ── RESULT BODY ── */
 .result-body { padding: 36px 44px 44px; }
 
+/* ── SECTION HEADERS ── */
+.report-section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.report-section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.report-divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  margin: 32px 0;
+}
+
+/* ── EXECUTIVE SUMMARY ── */
+.exec-summary {
+  background: var(--cream);
+  padding: 24px 28px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--gold);
+}
+.exec-summary p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink2);
+}
+.exec-summary strong { color: var(--navy); }
+
+.tev-box {
+  background: var(--navy);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.tev-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold2);
+}
+.tev-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: #fff;
+}
+.tev-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 0;
+  padding: 8px 0 0;
+}
+
+/* ── PRIORITY RISK MATRIX ── */
+.risk-matrix-card {
+  background: #fff;
+  border: 1px solid rgba(14,27,43,0.08);
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  position: relative;
+  border-left: 4px solid var(--red);
+}
+.risk-matrix-card.amber-border { border-left-color: var(--gold2); }
+.risk-matrix-card.green-border { border-left-color: var(--green); }
+
+.risk-matrix-rank {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+.risk-matrix-card.amber-border .risk-matrix-rank { color: var(--amber); }
+
+.risk-matrix-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.risk-matrix-body {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink2);
+  margin-bottom: 8px;
+}
+.risk-matrix-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.risk-matrix-meta-item {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  background: var(--cream);
+  color: var(--muted);
+}
+.risk-matrix-buyer {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 8px;
+  padding-left: 12px;
+  border-left: 2px solid rgba(14,27,43,0.1);
+}
+
 /* ── SCORE BREAKDOWN ── */
 .breakdown-section {
-  margin-bottom: 36px;
+  margin-bottom: 12px;
 }
 .breakdown-title {
   font-family: 'DM Mono', monospace;
@@ -475,11 +597,14 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
   margin-bottom: 14px;
 }
 .score-row {
+  margin-bottom: 18px;
+}
+.score-row-top {
   display: grid;
   grid-template-columns: 1fr 160px 50px;
   align-items: center;
   gap: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 .score-row-label {
   font-size: 12px;
@@ -507,120 +632,110 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
   color: var(--muted);
   text-align: right;
 }
-
-/* ── RISK CALLOUTS ── */
-.risk-callouts { margin-bottom: 36px; }
-.risk-flag {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--cream);
-  border-left: 3px solid transparent;
-  margin-bottom: 8px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--ink2);
-}
-.risk-flag.red    { border-left-color: var(--red); }
-.risk-flag.amber  { border-left-color: var(--gold2); }
-.risk-flag.green  { border-left-color: var(--green); }
-.flag-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 5px;
-}
-.flag-dot.green { background: var(--green); }
-.flag-dot.amber { background: var(--gold); }
-.flag-dot.red   { background: var(--red); }
-
-/* ── CALL PREP BOX ── */
-.call-prep-box {
-  background: var(--navy);
-  padding: 28px 32px;
-  margin-bottom: 28px;
-}
-.call-prep-box .box-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold2);
-  margin-bottom: 10px;
-}
-.call-prep-box h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 8px;
-}
-.call-prep-box p {
-  font-size: 13px;
-  color: rgba(255,255,255,0.5);
+.score-row-insight {
+  font-size: 12px;
   line-height: 1.6;
-  margin-bottom: 14px;
+  color: var(--ink2);
+  padding: 8px 12px;
+  margin-top: 6px;
+  border-left: 2px solid rgba(14,27,43,0.1);
+  background: rgba(14,27,43,0.02);
 }
-.call-prep-box ul {
-  list-style: none;
-  margin: 0;
-}
-.call-prep-box ul li {
-  font-size: 13px;
-  color: rgba(255,255,255,0.65);
-  padding: 5px 0;
-  padding-left: 16px;
-  position: relative;
-}
-.call-prep-box ul li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--gold2);
-  font-size: 11px;
-}
+.score-row-insight.red-insight { border-left-color: var(--red); background: rgba(139,32,32,0.04); }
+.score-row-insight.amber-insight { border-left-color: var(--gold2); background: rgba(184,130,26,0.04); }
+.score-row-insight.green-insight { border-left-color: var(--green); background: rgba(26,107,60,0.04); }
 
-/* ── DELIVERY CONFIRMATION ── */
-.delivery-box {
-  border: 1px solid rgba(14,27,43,0.1);
-  padding: 24px 28px;
-  margin-bottom: 28px;
+/* ── ROADMAP ── */
+.roadmap-phase {
+  margin-bottom: 20px;
 }
-.delivery-box-header {
+.roadmap-phase-header {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 10px;
+}
+.roadmap-phase-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.roadmap-phase-dot.urgent { background: var(--red); }
+.roadmap-phase-dot.mid { background: var(--gold2); }
+.roadmap-phase-dot.ongoing { background: var(--green); }
+
+.roadmap-phase-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 600;
+}
+.roadmap-item {
+  padding: 10px 16px;
+  background: var(--cream);
+  margin-bottom: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink2);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.roadmap-item-arrow {
+  color: var(--gold2);
+  flex-shrink: 0;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: var(--navy);
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.cta-box p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto 20px;
+}
+.cta-box .cta-quote {
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold3);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+.btn-cta {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 15px 36px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
   margin-bottom: 16px;
 }
-.delivery-icon {
-  width: 32px; height: 32px;
-  background: rgba(184,130,26,0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-}
-.delivery-box-header h4 {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--navy);
-}
-.delivery-box-header span {
-  font-size: 12px;
-  color: var(--muted);
-}
-.delivery-preview {
-  background: var(--cream);
-  padding: 16px 18px;
-  font-size: 13px;
-  line-height: 1.65;
-  color: var(--ink2);
-  border-left: 2px solid var(--gold2);
-  white-space: pre-line;
-}
-.delivery-preview strong { color: var(--navy); }
+.btn-cta:hover { background: var(--gold2); }
 
 /* ── CONFIRM BADGE ── */
 .confirm-band {
@@ -662,38 +777,16 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
 }
 .btn-restart:hover { color: var(--navy); }
 
-/* ── SMS PREVIEW ── */
-.sms-preview {
-  background: #f0f0f0;
-  border-radius: 16px;
-  padding: 14px 16px;
-  font-size: 13px;
-  line-height: 1.6;
-  color: #1a1a1a;
-  max-width: 320px;
-  position: relative;
-}
-.sms-preview::before {
-  content: 'Text Message Preview';
-  display: block;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 10px;
-}
-.sms-wrap {
-  margin-bottom: 28px;
-}
-
 @media (max-width: 600px) {
   .step-header, .step-body, .step-nav, .result-header, .result-body { padding-left: 24px; padding-right: 24px; }
   .options-grid, .options-grid.three, .input-row { grid-template-columns: 1fr; }
   .header { padding: 16px 20px; }
   .progress-wrap { padding: 16px 20px 0; }
   .result-score-num { font-size: 60px; }
-  .score-row { grid-template-columns: 1fr 100px 40px; }
+  .score-row-top { grid-template-columns: 1fr 100px 40px; }
+  .tev-box { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .risk-matrix-meta { flex-direction: column; gap: 6px; }
+  .cta-box { padding: 28px 24px; }
 }
 </style>
 </head>
@@ -1430,7 +1523,7 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
   <!-- ═══════════════ RESULT PANEL ═══════════════ -->
   <div id="resultPanel">
 
-    <!-- RESULT HEADER -->
+    <!-- RESULT HEADER (Section A: Executive Summary) -->
     <div id="resultHeader" class="result-header high">
       <div id="resultBadge" class="result-badge high">● High Risk</div>
       <div class="result-score-wrap">
@@ -1453,34 +1546,44 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
         <p id="confirmText">Your call is confirmed. <strong>Your advisor has received your risk report</strong> and will come prepared to address each of these areas specifically. Check your email for a copy of this report.</p>
       </div>
 
-      <!-- SCORE BREAKDOWN -->
-      <div class="breakdown-section">
-        <div class="breakdown-title">Your Risk Factor Breakdown</div>
-        <div id="scoreBreakdown"></div>
-      </div>
-
-      <!-- RISK FLAGS -->
-      <div class="risk-callouts" id="riskCallouts"></div>
-
-      <!-- CALL PREP BOX -->
-      <div class="call-prep-box" id="callPrepBox"></div>
-
-      <!-- EMAIL PREVIEW -->
-      <div class="delivery-box">
-        <div class="delivery-box-header">
-          <div class="delivery-icon">✉</div>
-          <div>
-            <h4>Your Report — Sent to <span id="emailDisplay"></span></h4>
-            <span>Exit Risk Report · The Arena</span>
-          </div>
+      <!-- Section A continued: Executive Summary & TEV -->
+      <div class="report-section-label">Section A</div>
+      <div class="report-section-title">Executive Summary</div>
+      <div class="exec-summary" id="execSummary"></div>
+      <div class="tev-box">
+        <div>
+          <div class="tev-label">Transferable Enterprise Value</div>
+          <div class="tev-note" style="color:rgba(255,255,255,0.4);margin:0;">Estimated % of full value you'd capture today</div>
         </div>
-        <div class="delivery-preview" id="emailPreview"></div>
+        <div class="tev-value" id="tevValue">—</div>
       </div>
+      <div class="tev-note" id="tevNote"></div>
 
-      <!-- SMS PREVIEW -->
-      <div class="sms-wrap">
-        <div class="sms-preview" id="smsPreview"></div>
-      </div>
+      <div class="report-divider"></div>
+
+      <!-- Section B: Priority Risk Matrix -->
+      <div class="report-section-label">Section B</div>
+      <div class="report-section-title">Priority Risk Matrix</div>
+      <div id="riskMatrix"></div>
+
+      <div class="report-divider"></div>
+
+      <!-- Section C: Full Category Breakdown -->
+      <div class="report-section-label">Section C</div>
+      <div class="report-section-title">Full Category Breakdown</div>
+      <div class="breakdown-section" id="scoreBreakdown"></div>
+
+      <div class="report-divider"></div>
+
+      <!-- Section D: Actionable Roadmap -->
+      <div class="report-section-label">Section D</div>
+      <div class="report-section-title">Your Actionable Roadmap</div>
+      <div id="roadmap"></div>
+
+      <div class="report-divider"></div>
+
+      <!-- Section E: Next Step -->
+      <div id="ctaSection"></div>
 
       <!-- RESTART -->
       <div class="restart-wrap">
@@ -1494,10 +1597,268 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
 </div><!-- /form-outer -->
 
 <script>
+// ══════════════════════════════════════════════════════════════════
+// DEEP INSIGHTS MAPPING
+// ══════════════════════════════════════════════════════════════════
+const INSIGHTS = {
+  // ── OWNER DEPENDENCY (runWithout) ──
+  runWithout: {
+    no: {
+      diagnosis: "Your business can't function without you. Every key relationship, every big decision, every critical process runs through you personally. You don't own a business - you own a job that happens to have employees.",
+      buyerView: "A buyer sees a business that dies the day you leave. They're not buying a company - they're buying a dependency on you. Most serious buyers will walk. The ones who stay will structure the deal to keep you locked in for 3-5 years with heavy earnout provisions.",
+      impact: "This alone can reduce your multiple by 1.5-2x. On a $2M EBITDA business, that's $3-4M left on the table. It's the single biggest value destroyer in any deal.",
+      fixTimeline: "12-18 months",
+      priority: 1,
+      category: "Owner / Key-Man Dependency"
+    },
+    maybe: {
+      diagnosis: "Your business would survive without you, but it wouldn't thrive. There are people who can keep things running, but you're still the linchpin for sales, key accounts, or strategic decisions. It's better than total dependency, but buyers see the gap.",
+      buyerView: "A buyer sees transition risk. They'll want an earnout clause to protect themselves and will likely require you to stay 12-24 months post-close. They'll also discount the offer to account for the uncertainty of whether your team can actually step up.",
+      impact: "Expect a 0.5-1x multiple reduction. Buyers will also structure more of the deal as earnout rather than cash at close, meaning you carry more risk.",
+      fixTimeline: "6-12 months",
+      priority: 2,
+      category: "Owner / Key-Man Dependency"
+    },
+    yes: {
+      diagnosis: "Your business runs without you. You've built a management team and systems that operate independently. This is what separates a sellable enterprise from an expensive job. You've done the hardest part.",
+      buyerView: "A buyer sees a turnkey operation. The business value isn't tied to you leaving or staying. This is exactly what PE firms and strategic acquirers look for - it means they can plug in their own growth strategies immediately.",
+      impact: "This adds 0.5-1x to your multiple. You'll also get better deal structure - more cash at close, shorter transition period, less earnout risk.",
+      fixTimeline: "Maintain ongoing",
+      priority: 5,
+      category: "Owner / Key-Man Dependency"
+    }
+  },
+
+  // ── CUSTOMER CONCENTRATION (custConc) ──
+  custConc: {
+    very_concentrated: {
+      diagnosis: "One customer controls 50%+ of your revenue. That's not a customer base - that's a dependency. If that client leaves, gets acquired, or changes vendors, half your business disappears overnight. You're one phone call away from a crisis.",
+      buyerView: "This is a deal-killer for most sophisticated buyers. They're essentially betting that a single relationship they don't control will hold after you leave. Most PE firms won't even make an offer. The ones who do will demand that client sign a long-term contract before close.",
+      impact: "This can reduce your multiple by 2-3x or kill the deal entirely. On a $2M EBITDA business, the difference between a diversified and very concentrated customer base can be $4-6M in enterprise value.",
+      fixTimeline: "12-18 months",
+      priority: 1,
+      category: "Customer Concentration Risk"
+    },
+    concentrated: {
+      diagnosis: "Your top client represents 25-50% of revenue. That's a significant concentration risk. You've built a business that's partially hostage to one relationship. If they renegotiate terms or leave, your EBITDA takes a massive hit.",
+      buyerView: "Buyers will flag this in due diligence and use it to negotiate a lower price or build in protections. Expect them to require customer retention guarantees or structure a portion of the deal around that client staying for 12-24 months post-close.",
+      impact: "Expect a 1-1.5x multiple reduction. Buyers will also shift more of the deal structure toward earnout provisions tied to customer retention.",
+      fixTimeline: "6-12 months",
+      priority: 2,
+      category: "Customer Concentration Risk"
+    },
+    moderate: {
+      diagnosis: "Your top client is 10-25% of revenue. There's some concentration, but it's manageable. You have a reasonable spread of customers, though losing your biggest account would still create a noticeable dip in performance.",
+      buyerView: "Buyers will note it but it won't kill the deal. They may ask about the strength of the relationship and whether contracts are in place. It's a yellow flag, not a red one.",
+      impact: "Minor impact - maybe a 0.25-0.5x reduction depending on whether contracts are in place. Fixable with a clear diversification plan.",
+      fixTimeline: "3-6 months",
+      priority: 4,
+      category: "Customer Concentration Risk"
+    },
+    diversified: {
+      diagnosis: "No single client represents more than 10% of your revenue. This is exactly where you want to be. Your revenue base is resilient - losing any one client won't significantly impact the business. You've built something durable.",
+      buyerView: "Buyers love this. A diversified customer base means predictable revenue and lower risk. This is a value accelerator, not just the absence of a problem.",
+      impact: "No negative impact. In fact, this adds 0.25-0.5x to your multiple compared to businesses with concentrated customer bases in your space.",
+      fixTimeline: "Maintain ongoing",
+      priority: 5,
+      category: "Customer Concentration Risk"
+    }
+  },
+
+  // ── EBITDA TRAJECTORY (ebitda) ──
+  ebitda: {
+    declining: {
+      diagnosis: "Your EBITDA is going down. Regardless of the reason - market shifts, rising costs, lost accounts - a buyer sees a business that's losing momentum. They don't pay premium multiples for declining trajectory. They discount for it.",
+      buyerView: "A declining EBITDA tells a buyer the best days might be behind this business. They'll either walk, apply a distress discount, or use trailing 12-month numbers to calculate a lower offer. Some will wait and come back in 6 months when your number is even lower and their leverage is even higher.",
+      impact: "A declining trajectory typically costs 1-2x on your multiple. Buyers may also use a lower EBITDA base (not your peak year) for valuation, compounding the discount.",
+      fixTimeline: "6-12 months",
+      priority: 1,
+      category: "EBITDA Trajectory"
+    },
+    stable: {
+      diagnosis: "Your EBITDA is flat. It's not declining, which is better than most, but it's not growing either. Flat EBITDA tells a buyer you've plateaued. They'll still make an offer, but they won't pay a growth premium - and they'll want to know why you've stalled.",
+      buyerView: "Buyers see a stable business as safe but not exciting. They'll value it fairly but won't compete aggressively for it. If they're a PE firm, they'll look at where they can inject growth post-acquisition - which means they'll pay you less so their returns are still attractive.",
+      impact: "You'll get market-rate multiples but no premium. In most trades and services businesses, that's the difference between 4x and 5-6x EBITDA.",
+      fixTimeline: "3-6 months",
+      priority: 3,
+      category: "EBITDA Trajectory"
+    },
+    growing: {
+      diagnosis: "Your EBITDA is growing. This is the strongest signal you can send to any buyer. Growth means the business has momentum, the market wants what you sell, and there's upside beyond just maintaining the status quo.",
+      buyerView: "Growing EBITDA is a buyer magnet. It creates competition among buyers, drives up multiples, and gives you leverage in negotiations. PE firms especially will pay a premium because they can project continued growth and show stronger returns to their investors.",
+      impact: "Growing EBITDA can add 1-2x to your multiple. On a $2M EBITDA business, that's $2-4M additional enterprise value. This is the single biggest value accelerator.",
+      fixTimeline: "Maintain ongoing",
+      priority: 5,
+      category: "EBITDA Trajectory"
+    }
+  },
+
+  // ── SOPs / DOCUMENTATION (sops) ──
+  sops: {
+    no: {
+      diagnosis: "Nothing is documented. Every process, every procedure, every 'way we do things' lives in someone's head. When those people leave - and they will after a sale - the operational knowledge walks out the door with them. You don't have a system. You have a collection of habits.",
+      buyerView: "Buyers see a business that's one resignation away from chaos. No SOPs means they'll need to invest significant time and money post-close to build what should already exist. They'll price that cost directly into a lower offer.",
+      impact: "Expect a 0.5-1x multiple reduction. Buyers will also factor in 6-12 months of operational risk during their integration plan, which further depresses the offer.",
+      fixTimeline: "6-12 months",
+      priority: 2,
+      category: "Operational Documentation (SOPs)"
+    },
+    partial: {
+      diagnosis: "You've documented some processes but not all. Key areas might be covered, but there are significant gaps. It shows intent and some operational maturity, but a buyer will still see gaps that create risk during transition.",
+      buyerView: "Buyers will give you credit for having started but will probe the gaps. They'll ask which departments lack documentation and factor in the cost of completing it. It's a moderate risk, not a deal-breaker.",
+      impact: "Minor multiple impact - about 0.25-0.5x reduction. The bigger impact is in how the deal gets structured. Better documentation means a smoother transition, which means fewer earnout provisions.",
+      fixTimeline: "3-6 months",
+      priority: 3,
+      category: "Operational Documentation (SOPs)"
+    },
+    yes_full: {
+      diagnosis: "Your operations are fully documented. Every key process has a standard operating procedure that anyone can follow. This means your business doesn't depend on institutional knowledge living in people's heads. It's in the system.",
+      buyerView: "Buyers see operational maturity. Full documentation means lower integration risk, faster onboarding of new management, and predictable operations post-close. This is a sign of a well-run business - exactly what they want to buy.",
+      impact: "No negative impact. Strong documentation can add 0.25-0.5x to your multiple and significantly improve deal structure in your favor.",
+      fixTimeline: "Maintain ongoing",
+      priority: 5,
+      category: "Operational Documentation (SOPs)"
+    }
+  },
+
+  // ── SUCCESSION PLAN (succPlan) ──
+  succPlan: {
+    no: {
+      diagnosis: "You have no succession plan. There's no one identified to take over, no timeline for transition, and no structure for what happens when you step away. Right now, if you got hit by a bus tomorrow, the business would be in serious trouble.",
+      buyerView: "Buyers see maximum transition risk. They'll want you to stay longer, they'll add earnout provisions, and they'll discount the offer because the entire transition plan needs to be built from scratch. Every month of unclear transition is a month of risk they're pricing in.",
+      impact: "Expect a 0.5-1x multiple reduction. You'll also get worse deal terms - longer required stay, more earnout, less cash at close.",
+      fixTimeline: "6-12 months",
+      priority: 2,
+      category: "Succession & Transition Plan"
+    },
+    unsure: {
+      diagnosis: "You don't know where to start on succession planning. That's honest, but it means you're further behind than most. A buyer will see this and know they're dealing with someone who hasn't thought through the transition. That gives them leverage.",
+      buyerView: "A buyer sees an owner who hasn't seriously considered life after the sale. They'll use this to push for terms that protect them - longer stay periods, heavier earnouts, and more control during transition.",
+      impact: "Similar to having no plan - expect 0.5-1x multiple reduction plus unfavorable deal structure.",
+      fixTimeline: "6-12 months",
+      priority: 2,
+      category: "Succession & Transition Plan"
+    },
+    yes_partial: {
+      diagnosis: "You've thought about succession but haven't formalized it. There are some ideas, maybe a few people in mind, but nothing documented or tested. It's a starting point, but buyers will see the gap between intent and execution.",
+      buyerView: "Buyers will probe how real your plan is. If it's just 'I've thought about it,' they'll treat it as no plan. If there's a clear next-in-line person with some responsibility already, they'll give you partial credit.",
+      impact: "Minor impact - about 0.25-0.5x reduction. The key variable is whether you can show a credible candidate who's already taking on responsibility.",
+      fixTimeline: "3-6 months",
+      priority: 3,
+      category: "Succession & Transition Plan"
+    },
+    yes_full: {
+      diagnosis: "You have a documented succession plan with identified successors, a transition timeline, and clear responsibilities. This is rare and extremely valuable. Most business owners never get here.",
+      buyerView: "Buyers see a smooth transition ahead. This dramatically reduces their risk and increases their confidence in the deal. They're buying a business that can operate without you from day one.",
+      impact: "No negative impact. A strong succession plan can improve your deal terms significantly - shorter required stay, less earnout, more cash at close.",
+      fixTimeline: "Maintain ongoing",
+      priority: 5,
+      category: "Succession & Transition Plan"
+    }
+  },
+
+  // ── FINANCIAL CLEANLINESS (finances) ──
+  finances: {
+    very_mixed: {
+      diagnosis: "Your personal and business finances are deeply intertwined. Personal cars, vacations, family expenses - they're all running through the business. This makes it nearly impossible for a buyer to determine the real profitability of the company. And if they can't see it, they won't pay for it.",
+      buyerView: "This is a due diligence nightmare. Buyers will either walk or bring in forensic accountants to untangle the mess - at your expense (reflected in a lower offer). They can't underwrite a loan or justify an investment when the numbers are unreliable.",
+      impact: "Commingled finances can reduce your multiple by 0.5-1.5x and are the #1 reason deals collapse in due diligence. Even if the deal survives, the cost of cleanup comes directly out of your proceeds.",
+      fixTimeline: "6-12 months",
+      priority: 1,
+      category: "Financial Cleanliness"
+    },
+    mixed: {
+      diagnosis: "There are personal expenses running through the business. It's common - most owners do it for tax advantages - but it creates a real problem when it's time to sell. Buyers need clean financials to calculate what the business actually earns.",
+      buyerView: "Buyers will flag every personal expense and use it to question your reported EBITDA. They'll do their own add-back calculations and they won't be generous. Expect disputes about what's a legitimate business expense vs. what's personal.",
+      impact: "Expect a 0.5-1x multiple reduction. The more time spent debating financials in due diligence, the more leverage shifts to the buyer.",
+      fixTimeline: "3-6 months",
+      priority: 2,
+      category: "Financial Cleanliness"
+    },
+    mostly: {
+      diagnosis: "Your finances are mostly clean with minor overlap. Maybe a few personal expenses find their way into the business, but the core financials tell a clear story. This is fixable quickly and shows operational discipline.",
+      buyerView: "Buyers will note the minor issues but won't use them as a significant negotiation lever. A few adjustments during due diligence and the picture will be clear. This is a normal finding, not a red flag.",
+      impact: "Minimal impact - cleanup might take a few weeks of accounting work. No meaningful multiple reduction if you clean it up before going to market.",
+      fixTimeline: "1-3 months",
+      priority: 4,
+      category: "Financial Cleanliness"
+    },
+    clean: {
+      diagnosis: "Your personal and business finances are completely separated. Clean books, clear P&L, documented add-backs. This is the standard every business should meet before going to market - and you're already there.",
+      buyerView: "Buyers can trust the numbers. Clean financials mean faster due diligence, fewer surprises, and higher confidence in the deal. This accelerates the entire process.",
+      impact: "No negative impact. Clean financials are table stakes, but meeting this standard means you avoid the 0.5-1.5x penalty that messy books create.",
+      fixTimeline: "Maintain ongoing",
+      priority: 5,
+      category: "Financial Cleanliness"
+    }
+  },
+
+  // ── TIMELINE URGENCY (timeline) ──
+  timeline: {
+    asap: {
+      diagnosis: "You want to exit within 12 months. Urgency creates leverage - for the buyer. The less time you have, the less room you have to negotiate, fix issues, or walk away from a bad deal. Every month of pressure you feel is a discount the buyer will apply.",
+      buyerView: "A buyer who knows you need to sell quickly will use that against you. They'll move slowly, introduce delays in due diligence, and know you can't afford to walk away. Urgency is the buyer's best friend and your worst enemy.",
+      impact: "Urgency without preparation typically costs 10-20% of total deal value. It also limits your buyer pool because you can't run a competitive process.",
+      fixTimeline: "Immediate - start prep now",
+      priority: 2,
+      category: "Timeline Urgency"
+    },
+    '1to3': {
+      diagnosis: "You're looking at a 1-3 year exit window. This is the ideal planning horizon. Enough time to fix real issues, build a competitive process, and approach the market from a position of strength. But only if you start now.",
+      buyerView: "A 1-3 year timeline tells a buyer you're planning, not panicking. This means you can afford to walk away from a bad deal, which shifts leverage to you. Buyers compete harder when they know you have time and options.",
+      impact: "This timeline gives you room to add 1-2x to your multiple by fixing the issues identified in this report. Time is your most valuable asset right now.",
+      fixTimeline: "Use the full window",
+      priority: 4,
+      category: "Timeline Urgency"
+    },
+    '3to5': {
+      diagnosis: "You have 3-5 years. You have the luxury of time to build this right. Every issue in this report can be addressed, systems built, team developed, and financials optimized. When you go to market, you'll go from a position of maximum strength.",
+      buyerView: "Buyers won't even be a factor yet. Use this time to make the business so attractive that when you do go to market, buyers compete for the privilege of acquiring you.",
+      impact: "With this timeline, you can realistically add 2-3x to your eventual multiple compared to selling today. The compound effect of fixing every area is massive.",
+      fixTimeline: "Build the full plan now",
+      priority: 5,
+      category: "Timeline Urgency"
+    },
+    over5: {
+      diagnosis: "Your timeline is 5+ years or undefined. You're thinking about this early, which is smart. Most owners don't think about exit readiness until it's too late. Starting now means you can build toward maximum value with zero pressure.",
+      buyerView: "Not relevant yet - but the smart move is to build a business that's always ready to sell. The best time to prepare for an exit is long before you need one.",
+      impact: "No urgency penalty. Every improvement you make now compounds over years. Starting the optimization process early is the single highest-ROI decision you can make.",
+      fixTimeline: "Build foundations now",
+      priority: 5,
+      category: "Timeline Urgency"
+    }
+  }
+};
+
+// Answer labels for email readability
+const ANSWER_LABELS = {
+  runWithout: { yes: "Yes - confidently", maybe: "Maybe - with some friction", no: "No - I am the business" },
+  custConc: { diversified: "Diversified (no client >10%)", moderate: "Moderate (top client 10-25%)", concentrated: "Concentrated (top client 25-50%)", very_concentrated: "Very concentrated (one client 50%+)" },
+  ebitda: { growing: "Growing (up 10%+ over 2 years)", stable: "Stable (flat)", declining: "Declining (down vs prior years)" },
+  sops: { yes_full: "Yes - comprehensive and current", partial: "Some - key areas only", no: "No - lives in people's heads" },
+  succPlan: { yes_full: "Yes - fully documented", yes_partial: "Partially - some ideas", no: "No plan in place", unsure: "Not sure where to start" },
+  finances: { clean: "Completely separated", mostly: "Mostly clean", mixed: "Somewhat mixed", very_mixed: "Very intertwined" },
+  timeline: { asap: "Within 12 months", '1to3': "1-3 years", '3to5': "3-5 years", over5: "5+ years or not sure" },
+  industry: { trades: "Trades/Mechanical", construction: "Construction/GC", industrial: "Industrial Services", professional: "Professional Services", healthcare: "Healthcare/Medical", facilities: "Facilities/Property", logistics: "Logistics/Distribution", tech_services: "Technology/IT Services", other: "Other Service Business" },
+  revenue: { under5: "Under $5M", '5to10': "$5M-$10M", '10to25': "$10M-$25M", '25to50': "$25M-$50M", over50: "Over $50M" },
+  age: { under5: "Under 5 years", '5to10': "5-10 years", '10to20': "10-20 years", over20: "20+ years" },
+  ownerAge: { under45: "Under 45", '45to54': "45-54", '55to64': "55-64", '65to74': "65-74", '75plus': "75+" },
+  ownership: { sole: "Sole Owner/Founder", family: "Family-Owned", partner: "Business Partners", inherited: "Inherited/2nd Gen" },
+  postExit: { clear: "Clear picture", vague: "Some ideas, nothing concrete", blank: "Blank page" },
+  fear: { low_price: "Getting a low offer", taken_advantage: "Being taken advantage of", legacy: "Losing my legacy", employees: "What happens to my employees", identity: "Who am I after this?", none: "No major fears" },
+  willingness: { fully: "Fully committed", mostly: "Mostly committed", passive: "Want someone to handle it", resistant: "Don't want to change much" },
+  knowEbitda: { yes_exact: "Yes - exact number", yes_approx: "Roughly - ballpark", no: "No - would have to look it up", unsure_what: "Not sure what EBITDA means" },
+  inbound: { yes_multiple: "Yes - multiple approaches", yes_one: "Yes - one or two", no: "No inquiries yet", not_looking: "Not actively looking" },
+  priorAdvisor: { no: "No - first time", exploring: "Interviewing advisors now", yes_good: "Yes - good experience", yes_bad: "Yes - disappointed" }
+};
+
 // ── STATE ──────────────────────────────────────────────────────────
 const answers = {};
 let currentStep = 1;
 const totalSteps = 5;
+
+// Progressive data capture
+const progressiveData = { startedAt: new Date().toISOString(), completedSections: [] };
 
 const stepLabels = [
   'Section 1 of 5 — Your Info',
@@ -1513,6 +1874,9 @@ function selectOption(card, field, value) {
   group.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
   card.classList.add('selected');
   answers[field] = value;
+  // Progressive capture
+  progressiveData[field] = value;
+  progressiveData.lastActivity = new Date().toISOString();
 }
 
 // ── NAVIGATION ─────────────────────────────────────────────────────
@@ -1526,7 +1890,24 @@ function showStep(n) {
 }
 
 function nextStep() {
-  if (currentStep < totalSteps) showStep(currentStep + 1);
+  if (currentStep < totalSteps) {
+    // Record section completion for progressive capture
+    if (!progressiveData.completedSections.includes(currentStep)) {
+      progressiveData.completedSections.push(currentStep);
+    }
+    // Capture text inputs from step 1
+    if (currentStep === 1) {
+      answers.ownerName = document.getElementById('ownerName').value;
+      answers.companyName = document.getElementById('companyName').value;
+      answers.email = document.getElementById('email').value;
+      answers.phone = document.getElementById('phone').value;
+      progressiveData.ownerName = answers.ownerName;
+      progressiveData.email = answers.email;
+      progressiveData.phone = answers.phone;
+      progressiveData.companyName = answers.companyName;
+    }
+    showStep(currentStep + 1);
+  }
 }
 
 function prevStep() {
@@ -1544,81 +1925,112 @@ function updateProgress() {
 function calculateRisk() {
   let total = 0;
   const breakdown = [];
-  const flags = [];
+  const insightsUsed = [];
 
-  // ── OWNER DEPENDENCY (0–25) — #1 multiple killer
+  // ── OWNER DEPENDENCY (0-25)
   const rwMap = { no: 25, maybe: 14, yes: 2 };
   const rwScore = rwMap[answers.runWithout] ?? 12;
-  const rwPct = Math.round((rwScore / 25) * 100);
   const rwColor = rwScore >= 18 ? 'red' : rwScore >= 10 ? 'amber' : 'green';
-  breakdown.push({ label: 'Owner / Key-Man Dependency', score: rwScore, max: 25, color: rwColor });
-  if (answers.runWithout === 'no') flags.push({ color: 'red', text: 'Critical: The business cannot run without you. This is the single biggest discount buyers apply. If you left tomorrow, revenue would follow you — and buyers know it.' });
-  else if (answers.runWithout === 'maybe') flags.push({ color: 'amber', text: 'Moderate risk: The business would struggle without you present. A buyer will price in transition risk and likely require an earnout or extended stay.' });
+  const rwInsight = INSIGHTS.runWithout[answers.runWithout] || null;
+  breakdown.push({ label: 'Owner / Key-Man Dependency', score: rwScore, max: 25, color: rwColor, insight: rwInsight, key: 'runWithout' });
+  if (rwInsight) insightsUsed.push(rwInsight);
   total += rwScore;
 
-  // ── CUSTOMER CONCENTRATION (0–20)
+  // ── CUSTOMER CONCENTRATION (0-20)
   const ccMap = { very_concentrated: 20, concentrated: 13, moderate: 6, diversified: 0 };
   const ccScore = ccMap[answers.custConc] ?? 10;
-  const ccPct = Math.round((ccScore / 20) * 100);
   const ccColor = ccScore >= 14 ? 'red' : ccScore >= 7 ? 'amber' : 'green';
-  breakdown.push({ label: 'Customer Concentration Risk', score: ccScore, max: 20, color: ccColor });
-  if (answers.custConc === 'very_concentrated') flags.push({ color: 'red', text: 'Deal-breaker risk: One client represents 50%+ of your revenue. If they leave post-close, the buyer\'s investment collapses. This alone can kill a deal or slash your multiple by 2–3x.' });
-  else if (answers.custConc === 'concentrated') flags.push({ color: 'amber', text: 'Significant risk: Your top client concentration will raise red flags in due diligence. Buyers will build this into their offer as a hedge.' });
+  const ccInsight = INSIGHTS.custConc[answers.custConc] || null;
+  breakdown.push({ label: 'Customer Concentration Risk', score: ccScore, max: 20, color: ccColor, insight: ccInsight, key: 'custConc' });
+  if (ccInsight) insightsUsed.push(ccInsight);
   total += ccScore;
 
-  // ── EBITDA TREND (0–15)
+  // ── EBITDA TREND (0-15)
   const eMap = { declining: 15, stable: 6, growing: 0 };
   const eScore = eMap[answers.ebitda] ?? 8;
   const eColor = eScore >= 12 ? 'red' : eScore >= 5 ? 'amber' : 'green';
-  breakdown.push({ label: 'EBITDA Trajectory', score: eScore, max: 15, color: eColor });
-  if (answers.ebitda === 'declining') flags.push({ color: 'red', text: 'High risk: Declining EBITDA tells buyers the business is getting weaker. They will either walk, apply a distress discount, or use it to renegotiate after due diligence.' });
+  const eInsight = INSIGHTS.ebitda[answers.ebitda] || null;
+  breakdown.push({ label: 'EBITDA Trajectory', score: eScore, max: 15, color: eColor, insight: eInsight, key: 'ebitda' });
+  if (eInsight) insightsUsed.push(eInsight);
   total += eScore;
 
-  // ── SOPs / DOCUMENTATION (0–15)
+  // ── SOPs (0-15)
   const sopMap = { no: 15, partial: 8, yes_full: 1 };
   const sopScore = sopMap[answers.sops] ?? 8;
   const sopColor = sopScore >= 12 ? 'red' : sopScore >= 6 ? 'amber' : 'green';
-  breakdown.push({ label: 'Operational Documentation (SOPs)', score: sopScore, max: 15, color: sopColor });
-  if (answers.sops === 'no') flags.push({ color: 'amber', text: 'No documented SOPs: Every process lives in someone\'s head. When they leave, value walks out with them. Buyers see this as a hidden liability and will price it accordingly.' });
+  const sopInsight = INSIGHTS.sops[answers.sops] || null;
+  breakdown.push({ label: 'Operational Documentation (SOPs)', score: sopScore, max: 15, color: sopColor, insight: sopInsight, key: 'sops' });
+  if (sopInsight) insightsUsed.push(sopInsight);
   total += sopScore;
 
-  // ── SUCCESSION PLAN (0–10)
+  // ── SUCCESSION PLAN (0-10)
   const spMap = { no: 10, unsure: 9, yes_partial: 4, yes_full: 0 };
   const spScore = spMap[answers.succPlan] ?? 5;
   const spColor = spScore >= 8 ? 'red' : spScore >= 4 ? 'amber' : 'green';
-  breakdown.push({ label: 'Succession & Transition Plan', score: spScore, max: 10, color: spColor });
-  if (answers.succPlan === 'no' || answers.succPlan === 'unsure') flags.push({ color: 'amber', text: 'No succession plan: Buyers want to know the business doesn\'t collapse during handover. Without a plan, they assume the worst — and charge you for it.' });
+  const spInsight = INSIGHTS.succPlan[answers.succPlan] || null;
+  breakdown.push({ label: 'Succession & Transition Plan', score: spScore, max: 10, color: spColor, insight: spInsight, key: 'succPlan' });
+  if (spInsight) insightsUsed.push(spInsight);
   total += spScore;
 
-  // ── FINANCIAL CLARITY (0–10)
+  // ── FINANCIAL CLARITY (0-10)
   const finMap = { very_mixed: 10, mixed: 7, mostly: 3, clean: 0 };
   const finScore = finMap[answers.finances] ?? 5;
   const finColor = finScore >= 8 ? 'red' : finScore >= 4 ? 'amber' : 'green';
-  breakdown.push({ label: 'Financial Cleanliness', score: finScore, max: 10, color: finColor });
-  if (answers.finances === 'very_mixed' || answers.finances === 'mixed') flags.push({ color: 'red', text: 'Commingled finances: Personal and business money mixing is the #1 reason deals die in due diligence. Buyers see it as a red flag and will often walk or reopen price negotiations.' });
+  const finInsight = INSIGHTS.finances[answers.finances] || null;
+  breakdown.push({ label: 'Financial Cleanliness', score: finScore, max: 10, color: finColor, insight: finInsight, key: 'finances' });
+  if (finInsight) insightsUsed.push(finInsight);
   total += finScore;
 
-  // ── TIMELINE URGENCY (0–5)
+  // ── TIMELINE URGENCY (0-5)
   const tlMap = { asap: 5, '1to3': 3, '3to5': 1, over5: 0 };
   const tlScore = tlMap[answers.timeline] ?? 3;
   const tlColor = tlScore >= 4 ? 'amber' : 'green';
-  breakdown.push({ label: 'Timeline Urgency vs. Preparation', score: tlScore, max: 5, color: tlColor });
-  if (answers.timeline === 'asap') flags.push({ color: 'amber', text: 'Urgent timeline: The less time you have, the more leverage buyers hold. Urgency without preparation is the formula for a bad deal.' });
+  const tlInsight = INSIGHTS.timeline[answers.timeline] || null;
+  breakdown.push({ label: 'Timeline Urgency', score: tlScore, max: 5, color: tlColor, insight: tlInsight, key: 'timeline' });
+  if (tlInsight) insightsUsed.push(tlInsight);
   total += tlScore;
 
-  return { total, breakdown, flags };
+  // Sort insights by priority for risk matrix
+  const sortedInsights = insightsUsed.filter(i => i.priority <= 3).sort((a, b) => a.priority - b.priority);
+
+  return { total, breakdown, sortedInsights, allInsights: insightsUsed };
 }
+
+// ── TEV CALCULATION ────────────────────────────────────────────────
+function calculateTEV(total) {
+  if (total <= 15) return { pct: '90-100%', note: 'Your business is close to fully transferable. Minor optimizations could push you to maximum value.' };
+  if (total <= 30) return { pct: '70-85%', note: 'You\'re leaving 15-30% of your enterprise value on the table. The gaps are fixable, but they need attention before you go to market.' };
+  if (total <= 50) return { pct: '45-65%', note: 'A buyer would discount your business by 35-55% from its potential value. That\'s real money - on a $10M enterprise, you\'re walking away from $3.5-5.5M.' };
+  if (total <= 70) return { pct: '25-40%', note: 'You\'d capture less than half of what this business could be worth. Going to market now would be one of the most expensive decisions you ever make.' };
+  return { pct: '10-20%', note: 'In its current state, a buyer would pay a fraction of what this business is worth - if they make an offer at all. The gap between where you are and where you need to be is significant, but it\'s fixable.' };
+}
+
+// ── EMAIL SIGNATURE ────────────────────────────────────────────────
+const arenaSignature = `
+<div style="margin-top:30px;padding-top:20px;border-top:1px solid rgba(201,168,76,0.12);">
+  <p style="color:#c9a84c;font-weight:700;font-size:14px;margin:0 0 4px;">Jean Hardy</p>
+  <p style="color:#9a9590;font-size:12px;margin:0 0 2px;">Managing Partner, The Arena Partners</p>
+  <p style="color:#6b6560;font-size:11px;margin:0 0 12px;">Arena Business Advisors, LLC</p>
+  <p style="color:#6b6560;font-size:11px;margin:0;">3555 Timmons Lane, Suite 1140, Houston, TX 77027</p>
+</div>`;
 
 // ── SUBMIT ─────────────────────────────────────────────────────────
 function submitForm() {
+  // Capture final text fields
+  answers.ownerName = document.getElementById('ownerName').value;
+  answers.companyName = document.getElementById('companyName').value;
+  answers.email = document.getElementById('email').value;
+  answers.phone = document.getElementById('phone').value;
   answers.successNote = document.getElementById('successNote').value;
   answers.extraNote = document.getElementById('extraNote').value;
 
-  const { total, breakdown, flags } = calculateRisk();
+  const { total, breakdown, sortedInsights, allInsights } = calculateRisk();
+  const tev = calculateTEV(total);
 
+  // Hide form steps, show result
   document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('progressBar').style.width = '100%';
-  document.getElementById('stepLabel').textContent = 'Risk Assessment Complete';
+  document.getElementById('stepLabel').textContent = 'Your Exit Diagnostic Report';
   document.getElementById('stepCount').textContent = '';
 
   const panel = document.getElementById('resultPanel');
@@ -1638,31 +2050,28 @@ function submitForm() {
   // Determine risk band
   let band, headerClass, badgeClass, badgeText, title, sub;
   const name = answers.ownerName ? answers.ownerName.split(' ')[0] : 'there';
+  const company = answers.companyName || 'your business';
 
   if (total <= 20) {
-    band = 'low';
-    headerClass = badgeClass = 'low';
+    band = 'low'; headerClass = badgeClass = 'low';
     badgeText = '● Low Risk — Transferable & Exit Ready';
     title = `${name}, your business is in <em>stronger shape</em> than most.`;
-    sub = `With a risk score of ${total}/100, your Transferable Enterprise Value — what a buyer would actually pay — is close to your full enterprise value. That said, every business has room to optimize — and our call will map out where to push for maximum value.`;
+    sub = `With a risk score of ${total}/100, your business is well-positioned for a premium exit. Your Transferable Enterprise Value is high - you've done the hard work. Our call will focus on optimization and maximizing your multiple.`;
   } else if (total <= 45) {
-    band = 'moderate';
-    headerClass = badgeClass = 'moderate';
+    band = 'moderate'; headerClass = badgeClass = 'moderate';
     badgeText = '◐ Moderate Risk — Not Yet Transferable';
     title = `${name}, you have <em>real risk factors</em> a buyer will use against you.`;
-    sub = `With a risk score of ${total}/100, your Transferable Enterprise Value is likely 30-50% below your total enterprise value. The issues flagged below are exactly what buyers use to justify a lower offer. The Transferable Exit System addresses each one — our call will map out the timeline.`;
+    sub = `With a risk score of ${total}/100, your Transferable Enterprise Value is significantly below your full enterprise value. The issues below are exactly what buyers use to justify a lower offer. Each one is fixable - our call will map the timeline.`;
   } else if (total <= 70) {
-    band = 'high';
-    headerClass = badgeClass = 'high';
+    band = 'high'; headerClass = badgeClass = 'high';
     badgeText = '▲ High Risk — Significant Transferability Gaps';
     title = `${name}, several factors will <em>significantly discount your multiple</em> — or kill the deal.`;
-    sub = `With a risk score of ${total}/100, your Transferable Enterprise Value is significantly below what this business is actually worth. If you went to market today, you'd either get a low offer or face renegotiation after due diligence. The Transferable Exit System is designed to close exactly this kind of gap — our call will show you how.`;
+    sub = `With a risk score of ${total}/100, going to market today would leave serious money on the table. Buyers will exploit every gap identified below. The Transferable Exit System addresses each one. Our call shows you how.`;
   } else {
-    band = 'critical';
-    headerClass = badgeClass = 'critical';
+    band = 'critical'; headerClass = badgeClass = 'critical';
     badgeText = '✕ Critical Risk — Not Transferable';
     title = `${name}, in its current state, this business <em>will struggle to sell</em> — or sell far below value.`;
-    sub = `With a risk score of ${total}/100, in its current state, your Transferable Enterprise Value is a fraction of what this business could be worth. Buyers will see these issues and either walk or structure a deal that protects them at your expense. This is not permanent — the Transferable Exit System has turned businesses like yours around. Our call is the first step.`;
+    sub = `With a risk score of ${total}/100, buyers will either walk away or structure a deal that protects them at your expense. This is not permanent - the Transferable Exit System has turned businesses like yours around. Our call is the first step.`;
   }
 
   document.getElementById('resultHeader').className = 'result-header ' + headerClass;
@@ -1673,77 +2082,135 @@ function submitForm() {
   document.getElementById('resultSub').textContent = sub;
 
   // Confirmation text
-  document.getElementById('confirmText').innerHTML = `Your call is confirmed and your advisor has received this report. <strong>Come prepared to discuss these risk areas directly.</strong> A copy of this report has been sent to ${answers.email || 'your email'}.`;
+  document.getElementById('confirmText').innerHTML = `Your diagnostic report is ready and your advisor has received a detailed copy. <strong>Come prepared to discuss these risk areas directly.</strong> A full copy has been sent to ${answers.email || 'your email'}.`;
 
-  // Score breakdown
+  // ── Section A: Executive Summary ──
+  const worstAreas = breakdown.filter(b => b.insight && b.insight.priority <= 2).sort((a, b) => b.score/b.max - a.score/a.max);
+  const worstNames = worstAreas.slice(0, 2).map(b => b.label.toLowerCase());
+  let summaryText = `<p><strong>${answers.ownerName || 'Assessment'} — ${company}</strong></p>`;
+  summaryText += `<p style="margin-top:10px;">Your overall Exit Risk Score is <strong>${total}/100</strong> (${band} risk). `;
+  if (worstNames.length >= 2) {
+    summaryText += `Your biggest vulnerabilities are in <strong>${worstNames[0]}</strong> and <strong>${worstNames[1]}</strong>. `;
+  } else if (worstNames.length === 1) {
+    summaryText += `Your primary vulnerability is in <strong>${worstNames[0]}</strong>. `;
+  }
+  if (total > 45) {
+    summaryText += `If you went to market today, buyers would exploit these gaps to discount your offer significantly - or walk away entirely. Every issue identified below is fixable with the right plan and timeline.</p>`;
+  } else if (total > 20) {
+    summaryText += `These areas will come up in due diligence and give buyers negotiation leverage. Addressing them before going to market is the difference between a good deal and a great one.</p>`;
+  } else {
+    summaryText += `You've built a business that's well-positioned for a strong exit. Our focus will be optimization and making sure you capture maximum value.</p>`;
+  }
+  document.getElementById('execSummary').innerHTML = summaryText;
+
+  // TEV
+  document.getElementById('tevValue').textContent = tev.pct;
+  document.getElementById('tevNote').textContent = tev.note;
+
+  // ── Section B: Priority Risk Matrix ──
+  const topRisks = breakdown.filter(b => b.insight && b.insight.priority <= 3 && b.score / b.max > 0.3)
+    .sort((a, b) => a.insight.priority - b.insight.priority || (b.score/b.max) - (a.score/a.max))
+    .slice(0, 3);
+
+  const matrixEl = document.getElementById('riskMatrix');
+  if (topRisks.length > 0) {
+    matrixEl.innerHTML = topRisks.map((r, i) => {
+      const borderClass = r.color === 'red' ? '' : r.color === 'amber' ? 'amber-border' : 'green-border';
+      return `
+      <div class="risk-matrix-card ${borderClass}">
+        <div class="risk-matrix-rank">Risk #${i+1} — Priority ${r.insight.priority}</div>
+        <div class="risk-matrix-title">${r.label}</div>
+        <div class="risk-matrix-body">${r.insight.diagnosis}</div>
+        <div class="risk-matrix-buyer">"${r.insight.buyerView}"</div>
+        <div style="margin-top:10px;font-size:13px;color:var(--red);font-weight:600;">${r.insight.impact}</div>
+        <div class="risk-matrix-meta" style="margin-top:10px;">
+          <div class="risk-matrix-meta-item">Fix: ${r.insight.fixTimeline}</div>
+          <div class="risk-matrix-meta-item">Score: ${r.score}/${r.max}</div>
+        </div>
+      </div>`;
+    }).join('');
+  } else {
+    matrixEl.innerHTML = `<div class="risk-matrix-card green-border">
+      <div class="risk-matrix-rank">No Critical Risks Identified</div>
+      <div class="risk-matrix-title">Strong Baseline</div>
+      <div class="risk-matrix-body">Your business doesn't have any critical risk factors that would significantly discount your multiple. Our call will focus on optimization and positioning for maximum value.</div>
+    </div>`;
+  }
+
+  // ── Section C: Full Category Breakdown ──
   const breakdownEl = document.getElementById('scoreBreakdown');
-  breakdownEl.innerHTML = breakdown.map(b => `
+  breakdownEl.innerHTML = breakdown.map(b => {
+    const insightClass = b.color === 'red' ? 'red-insight' : b.color === 'amber' ? 'amber-insight' : 'green-insight';
+    const insightText = b.insight ? b.insight.diagnosis : '';
+    return `
     <div class="score-row">
-      <div class="score-row-label">${b.label}</div>
-      <div class="score-row-bar-bg"><div class="score-row-bar-fill ${b.color}" style="width:0%" data-pct="${Math.round((b.score/b.max)*100)}"></div></div>
-      <div class="score-row-pts">${b.score} / ${b.max}</div>
-    </div>
-  `).join('');
+      <div class="score-row-top">
+        <div class="score-row-label">${b.label}</div>
+        <div class="score-row-bar-bg"><div class="score-row-bar-fill ${b.color}" style="width:0%" data-pct="${Math.round((b.score/b.max)*100)}"></div></div>
+        <div class="score-row-pts">${b.score} / ${b.max}</div>
+      </div>
+      ${insightText ? `<div class="score-row-insight ${insightClass}">${insightText}</div>` : ''}
+    </div>`;
+  }).join('');
+
   setTimeout(() => {
     document.querySelectorAll('.score-row-bar-fill').forEach(bar => {
       bar.style.width = bar.dataset.pct + '%';
     });
   }, 200);
 
-  // Risk flags
-  const riskEl = document.getElementById('riskCallouts');
-  if (flags.length > 0) {
-    riskEl.innerHTML = `<div class="breakdown-title" style="margin-bottom:12px;">Risk Flags to Address on Your Call</div>` +
-      flags.map(f => `<div class="risk-flag ${f.color}"><div class="flag-dot ${f.color}"></div>${f.text}</div>`).join('');
-  } else {
-    riskEl.innerHTML = `<div class="risk-flag green"><div class="flag-dot green"></div>No critical risk flags identified. You're in solid shape — our call will focus on optimization and maximizing your multiple.</div>`;
+  // ── Section D: Actionable Roadmap ──
+  const roadmapEl = document.getElementById('roadmap');
+  const phase1 = allInsights.filter(i => i.priority <= 2);
+  const phase2 = allInsights.filter(i => i.priority >= 3 && i.priority <= 4);
+  const phase3 = allInsights.filter(i => i.priority >= 5);
+
+  let roadmapHtml = '';
+  if (phase1.length > 0) {
+    roadmapHtml += `<div class="roadmap-phase">
+      <div class="roadmap-phase-header">
+        <div class="roadmap-phase-dot urgent"></div>
+        <div class="roadmap-phase-title">Fix in First 90 Days — Critical</div>
+      </div>
+      ${phase1.map(i => `<div class="roadmap-item"><span class="roadmap-item-arrow">→</span><div><strong>${i.category}:</strong> ${i.impact} <em style="color:var(--muted);">(${i.fixTimeline})</em></div></div>`).join('')}
+    </div>`;
   }
+  if (phase2.length > 0) {
+    roadmapHtml += `<div class="roadmap-phase">
+      <div class="roadmap-phase-header">
+        <div class="roadmap-phase-dot mid"></div>
+        <div class="roadmap-phase-title">Fix in 6-12 Months — Important</div>
+      </div>
+      ${phase2.map(i => `<div class="roadmap-item"><span class="roadmap-item-arrow">→</span><div><strong>${i.category}:</strong> ${i.impact} <em style="color:var(--muted);">(${i.fixTimeline})</em></div></div>`).join('')}
+    </div>`;
+  }
+  if (phase3.length > 0) {
+    roadmapHtml += `<div class="roadmap-phase">
+      <div class="roadmap-phase-header">
+        <div class="roadmap-phase-dot ongoing"></div>
+        <div class="roadmap-phase-title">Optimize Ongoing — Maintain & Improve</div>
+      </div>
+      ${phase3.map(i => `<div class="roadmap-item"><span class="roadmap-item-arrow">→</span><div><strong>${i.category}:</strong> ${i.impact} <em style="color:var(--muted);">(${i.fixTimeline})</em></div></div>`).join('')}
+    </div>`;
+  }
+  if (!roadmapHtml) {
+    roadmapHtml = `<div class="roadmap-phase"><div class="roadmap-item"><span class="roadmap-item-arrow">→</span><div>Your business is in strong shape. Our call will focus on fine-tuning and maximizing your exit value.</div></div></div>`;
+  }
+  roadmapEl.innerHTML = roadmapHtml;
 
-  // Call prep box
-  const topIssues = breakdown.filter(b => b.score / b.max >= 0.5).slice(0, 3).map(b => b.label);
-  const prepEl = document.getElementById('callPrepBox');
-  prepEl.innerHTML = `
-    <div class="box-eyebrow">Before Your Call</div>
-    <h3>What Your Advisor Will Cover</h3>
-    <p>Your advisor has reviewed this report. Here's what to expect — and what to bring:</p>
-    <ul>
-      ${topIssues.length > 0 ? topIssues.map(i => `<li>We'll address your risk in: <strong style="color:var(--gold2)">${i}</strong></li>`).join('') : '<li>Walk through your exit readiness score and what it means for your multiple</li>'}
-      <li>How the Transferable Exit System addresses each risk factor</li>
-      <li>A realistic timeline — and what a self-funded, structured exit looks like</li>
-      <li>Whether the Transferable Exit System is right for your situation</li>
-    </ul>
-  `;
+  // ── Section E: Next Step CTA ──
+  const ctaEl = document.getElementById('ctaSection');
+  ctaEl.innerHTML = `
+    <div class="cta-box">
+      <h3>Your Next Step</h3>
+      <p>You now know exactly where your risks are. The question is what you do about them.</p>
+      <a href="https://thearenapartners.com/free-training" class="btn-cta">Book Your Diagnostic Call →</a>
+      <div class="cta-quote">"I've reviewed hundreds of businesses like yours. On our call, I'll walk you through exactly how to close the gaps identified above." — Jean Hardy</div>
+    </div>`;
 
-  // Email preview
-  const emailEl = document.getElementById('emailPreview');
-  const company = answers.companyName || 'your business';
-  emailEl.innerHTML = `<strong>Subject: Your Exit Risk Report — ${company}</strong>
-
-Hi ${name},
-
-You just completed your Exit Risk Assessment ahead of your call with The Arena.
-
-Here's your summary:
-
-Exit Risk Score: ${total} / 100 — ${band.charAt(0).toUpperCase() + band.slice(1)} Risk
-
-${flags.length > 0 ? 'Top risk factors identified:\n' + flags.map((f, i) => `${i+1}. ${f.text.split(':')[0]}`).join('\n') : 'No critical risk flags — strong baseline.'}
-
-Your advisor will be prepared to address each of these directly on your call. Come ready to have an honest conversation about what's working against you — and what we can do about it.
-
-See you soon.
-
-— The Arena Team`;
-
-  // Email display
-  document.getElementById('emailDisplay').textContent = answers.email || 'your email';
-
-  // SMS preview
-  const smsEl = document.getElementById('smsPreview');
-  const riskWord = band === 'low' ? 'low' : band === 'moderate' ? 'moderate' : band === 'high' ? 'high' : 'critical';
-  smsEl.innerHTML = `The Arena Partners: Hey ${name}, your Exit Risk Report is ready — Risk Score: ${total}/100 (${riskWord} risk). Your advisor has seen it. Your call is confirmed. Reply STOP to opt out.`;
-
-  // ── GHL INTEGRATION ─────────────────────────────────────────────
+  // ══════════════════════════════════════════════════════════════════
+  // GHL INTEGRATION
+  // ══════════════════════════════════════════════════════════════════
   const ghlHeaders = {
     'Authorization': 'Bearer pit-dae24b14-bb90-43ab-bfaf-3f227b47be50',
     'Version': '2021-07-28',
@@ -1789,6 +2256,13 @@ See you soon.
     { id: customFields.assessment_completed, value: new Date().toISOString().split('T')[0] }
   ];
 
+  // Helper: get readable answer label
+  function getLabel(field) {
+    const val = answers[field];
+    if (!val) return 'Not answered';
+    return (ANSWER_LABELS[field] && ANSWER_LABELS[field][val]) || val;
+  }
+
   // Upsert contact with assessment data + tag
   if (answers.email) {
     const nameParts = (answers.ownerName || '').split(' ');
@@ -1810,14 +2284,33 @@ See you soon.
       const contactId = data.contact ? data.contact.id : data.contactId;
       if (!contactId) return;
 
-      // Add detailed note with full assessment results
+      // Add detailed note
       const noteBody = `EXIT RISK ASSESSMENT COMPLETED\n` +
-        `Score: ${total}/100 — ${band.toUpperCase()} RISK\n\n` +
+        `Score: ${total}/100 — ${band.toUpperCase()} RISK\n` +
+        `TEV: ${tev.pct}\n\n` +
+        `ANSWERS:\n` +
+        `  Industry: ${getLabel('industry')}\n` +
+        `  Revenue: ${getLabel('revenue')}\n` +
+        `  Business Age: ${getLabel('age')}\n` +
+        `  Owner Age: ${getLabel('ownerAge')}\n` +
+        `  Ownership: ${getLabel('ownership')}\n` +
+        `  Timeline: ${getLabel('timeline')}\n` +
+        `  Succession Plan: ${getLabel('succPlan')}\n` +
+        `  EBITDA Trend: ${getLabel('ebitda')}\n` +
+        `  Run Without Owner: ${getLabel('runWithout')}\n` +
+        `  SOPs: ${getLabel('sops')}\n` +
+        `  Customer Concentration: ${getLabel('custConc')}\n` +
+        `  Financial Cleanliness: ${getLabel('finances')}\n` +
+        `  Know EBITDA: ${getLabel('knowEbitda')}\n` +
+        `  Inbound Interest: ${getLabel('inbound')}\n` +
+        `  Prior Advisor: ${getLabel('priorAdvisor')}\n` +
+        `  Post-Exit Vision: ${getLabel('postExit')}\n` +
+        `  Biggest Fear: ${getLabel('fear')}\n` +
+        `  Commitment Level: ${getLabel('willingness')}\n\n` +
         `BREAKDOWN:\n` +
         breakdown.map(b => `  ${b.label}: ${b.score}/${b.max} (${b.color})`).join('\n') + '\n\n' +
-        (flags.length > 0 ? `FLAGS:\n` + flags.map(f => `  [${f.color.toUpperCase()}] ${f.text}`).join('\n') + '\n\n' : '') +
-        `Notes: ${answers.extraNote || 'None'}\n` +
-        `Success definition: ${answers.successNote || 'None'}`;
+        `Success: ${answers.successNote || 'None'}\n` +
+        `Extra Notes: ${answers.extraNote || 'None'}`;
 
       fetch('https://services.leadconnectorhq.com/contacts/' + contactId + '/notes', {
         method: 'POST',
@@ -1825,36 +2318,80 @@ See you soon.
         body: JSON.stringify({ body: noteBody })
       });
 
-      // Send results email to the LEAD
+      // ── ENHANCED EMAIL TO LEAD ──
+      const leadBreakdownHtml = breakdown.map(b => {
+        const barColor = b.color === 'red' ? '#c44b3f' : b.color === 'amber' ? '#d4a43b' : '#4a9e6e';
+        const insightHtml = b.insight ? `<p style="color:#9a9590;font-size:12px;line-height:1.6;margin:8px 0 0;padding-left:12px;border-left:2px solid ${barColor};">${b.insight.diagnosis}</p>` : '';
+        return `
+        <div style="margin:14px 0;padding:14px 16px;background:#161616;border-radius:8px;border-left:3px solid ${barColor};">
+          <div style="display:flex;justify-content:space-between;">
+            <span style="color:#f5f0e8;font-weight:600;font-size:14px;">${b.label}</span>
+            <span style="color:#c9a84c;font-weight:700;font-size:14px;">${b.score}/${b.max}</span>
+          </div>
+          ${insightHtml}
+        </div>`;
+      }).join('');
+
+      const topRiskHtml = topRisks.length > 0 ? `
+        <div style="margin:24px 0;">
+          <p style="color:#c9a84c;font-weight:700;font-size:16px;margin-bottom:12px;">Your Top Risks:</p>
+          ${topRisks.map((r, i) => `
+            <div style="background:#161616;border:1px solid rgba(196,75,63,0.2);border-radius:8px;padding:16px;margin:10px 0;">
+              <p style="color:#fb923c;font-weight:700;margin:0 0 6px;">Risk #${i+1}: ${r.label}</p>
+              <p style="color:#9a9590;font-size:13px;line-height:1.6;margin:0 0 6px;">${r.insight.diagnosis}</p>
+              <p style="color:#c44b3f;font-size:13px;font-weight:600;margin:0;">${r.insight.impact}</p>
+              <p style="color:#6b6560;font-size:11px;margin:6px 0 0;">Fix timeline: ${r.insight.fixTimeline}</p>
+            </div>`).join('')}
+        </div>` : '';
+
+      const roadmapEmailHtml = (() => {
+        let html = '<div style="margin:24px 0;"><p style="color:#c9a84c;font-weight:700;font-size:16px;margin-bottom:12px;">Your Roadmap:</p>';
+        if (phase1.length > 0) {
+          html += `<p style="color:#c44b3f;font-weight:600;font-size:13px;margin:12px 0 6px;">⚡ Fix in First 90 Days:</p>`;
+          phase1.forEach(i => { html += `<p style="color:#9a9590;font-size:12px;margin:4px 0;padding-left:12px;">→ ${i.category}: ${i.impact}</p>`; });
+        }
+        if (phase2.length > 0) {
+          html += `<p style="color:#d4a43b;font-weight:600;font-size:13px;margin:12px 0 6px;">📋 Fix in 6-12 Months:</p>`;
+          phase2.forEach(i => { html += `<p style="color:#9a9590;font-size:12px;margin:4px 0;padding-left:12px;">→ ${i.category}: ${i.impact}</p>`; });
+        }
+        if (phase3.length > 0) {
+          html += `<p style="color:#4a9e6e;font-weight:600;font-size:13px;margin:12px 0 6px;">✓ Optimize Ongoing:</p>`;
+          phase3.forEach(i => { html += `<p style="color:#9a9590;font-size:12px;margin:4px 0;padding-left:12px;">→ ${i.category}: ${i.impact}</p>`; });
+        }
+        html += '</div>';
+        return html;
+      })();
+
       const leadResultHtml = `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#f5f0e8;padding:40px;">
         <div style="text-align:center;margin-bottom:30px;">
-          <h1 style="font-family:Georgia,serif;color:#c9a84c;font-size:24px;margin:0;">Your Exit Risk Report</h1>
-          <p style="color:#9a9590;margin-top:8px;">The Arena Partners</p>
+          <h1 style="font-family:Georgia,serif;color:#c9a84c;font-size:24px;margin:0;">Your Exit Diagnostic Report</h1>
+          <p style="color:#9a9590;margin-top:8px;">The Arena Partners — Transferable Exit System™</p>
         </div>
         <p style="font-size:16px;line-height:1.6;">Hi ${name},</p>
-        <p style="font-size:16px;line-height:1.7;color:#9a9590;">You just completed your Exit Risk Assessment. Here's your summary:</p>
+        <p style="font-size:14px;line-height:1.7;color:#9a9590;">Here's your complete Exit Diagnostic Report for <strong style="color:#f5f0e8;">${company}</strong>.</p>
         <div style="text-align:center;margin:30px 0;padding:30px;background:#161616;border:1px solid rgba(201,168,76,0.15);border-radius:12px;">
           <div style="font-family:Georgia,serif;font-size:48px;font-weight:800;color:#c9a84c;">${total}<span style="font-size:24px;color:#6b6560;">/100</span></div>
           <div style="font-size:14px;color:#9a9590;margin-top:8px;text-transform:uppercase;letter-spacing:2px;">${band} risk</div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(201,168,76,0.1);">
+            <div style="font-size:11px;color:#6b6560;text-transform:uppercase;letter-spacing:1px;">Transferable Enterprise Value</div>
+            <div style="font-family:Georgia,serif;font-size:28px;font-weight:800;color:#fff;margin-top:4px;">${tev.pct}</div>
+            <div style="font-size:11px;color:#9a9590;margin-top:4px;">${tev.note}</div>
+          </div>
         </div>
-        <div style="margin:20px 0;">
-          ${breakdown.map(b => `
-          <div style="margin:12px 0;padding:12px 16px;background:#161616;border-radius:8px;border-left:3px solid ${b.color === 'red' ? '#c44b3f' : b.color === 'amber' ? '#d4a43b' : '#4a9e6e'};">
-            <div style="display:flex;justify-content:space-between;">
-              <span style="color:#f5f0e8;font-weight:600;">${b.label}</span>
-              <span style="color:#c9a84c;font-weight:700;">${b.score}/${b.max}</span>
-            </div>
-          </div>`).join('')}
-        </div>
-        ${flags.length > 0 ? `
+        ${topRiskHtml}
         <div style="margin:24px 0;">
-          <p style="color:#c9a84c;font-weight:700;">Risk Flags:</p>
-          ${flags.map(f => `<p style="color:#9a9590;margin:8px 0;padding-left:12px;border-left:2px solid ${f.color === 'red' ? '#c44b3f' : '#d4a43b'};">${f.text}</p>`).join('')}
-        </div>` : ''}
-        <p style="font-size:16px;line-height:1.7;color:#9a9590;">Your advisor has received this report and will be prepared to discuss each risk factor on your call. Come ready for an honest conversation about what's working against you — and what we can do about it.</p>
-        <hr style="border:none;border-top:1px solid rgba(201,168,76,0.12);margin:30px 0;">
-        <p style="color:#6b6560;font-size:11px;text-align:center;">The Arena Partners / Arena Business Advisors, LLC<br>3555 Timmons Lane, Suite 1140, Houston, TX 77027</p>
+          <p style="color:#c9a84c;font-weight:700;font-size:16px;margin-bottom:8px;">Full Breakdown:</p>
+          ${leadBreakdownHtml}
+        </div>
+        ${roadmapEmailHtml}
+        <div style="text-align:center;margin:30px 0;padding:24px;background:#161616;border:1px solid rgba(201,168,76,0.15);border-radius:8px;">
+          <p style="color:#f5f0e8;font-size:15px;font-weight:600;margin:0 0 8px;">Ready to Close These Gaps?</p>
+          <p style="color:#9a9590;font-size:13px;line-height:1.6;margin:0 0 16px;">Your advisor has this report and will walk you through exactly how to address each risk area.</p>
+          <a href="https://thearenapartners.com/free-training" style="display:inline-block;background:#c9a84c;color:#0a0a0a;font-weight:700;padding:12px 28px;text-decoration:none;text-transform:uppercase;font-size:12px;letter-spacing:1px;">Book Your Diagnostic Call →</a>
+        </div>
+        <p style="font-style:italic;color:#c9a84c;font-size:13px;line-height:1.6;text-align:center;margin:20px 0;">"I've reviewed hundreds of businesses like yours. On our call, I'll walk you through exactly how to close the gaps identified above." — Jean Hardy</p>
+        ${arenaSignature}
       </div>`;
 
       fetch('https://services.leadconnectorhq.com/conversations/messages', {
@@ -1863,13 +2400,13 @@ See you soon.
         body: JSON.stringify({
           type: 'Email',
           contactId: contactId,
-          subject: 'Your Exit Risk Report — ' + (answers.companyName || 'Assessment Results'),
+          subject: 'Your Exit Diagnostic Report — ' + (answers.companyName || 'Assessment Results'),
           emailFrom: 'The Arena Partners <support@thearenapartners.com>',
           html: leadResultHtml
         })
       });
 
-      // Send results email to Jean (the rep)
+      // ── ENHANCED EMAIL TO JEAN ──
       fetch('https://services.leadconnectorhq.com/contacts/upsert', {
         method: 'POST',
         headers: ghlHeaders,
@@ -1885,25 +2422,102 @@ See you soon.
         const jeanId = jd.contact ? jd.contact.id : jd.contactId;
         if (!jeanId) return;
 
+        // Build priority list for call discussion
+        const priorityList = breakdown
+          .filter(b => b.insight && b.insight.priority <= 3)
+          .sort((a, b) => a.insight.priority - b.insight.priority)
+          .map((b, i) => `<tr>
+            <td style="padding:8px 12px;border-bottom:1px solid rgba(201,168,76,0.1);color:#fb923c;font-weight:700;">#${i+1}</td>
+            <td style="padding:8px 12px;border-bottom:1px solid rgba(201,168,76,0.1);color:#f5f0e8;">${b.label}</td>
+            <td style="padding:8px 12px;border-bottom:1px solid rgba(201,168,76,0.1);color:#c44b3f;">${b.score}/${b.max}</td>
+            <td style="padding:8px 12px;border-bottom:1px solid rgba(201,168,76,0.1);color:#9a9590;">${b.insight.fixTimeline}</td>
+          </tr>`).join('');
+
+        // Build full answers section
+        const allAnswersHtml = [
+          { section: 'PROFILE', items: [
+            ['Industry', getLabel('industry')],
+            ['Revenue', getLabel('revenue')],
+            ['Business Age', getLabel('age')],
+            ['Owner Age', getLabel('ownerAge')],
+            ['Ownership', getLabel('ownership')]
+          ]},
+          { section: 'TIMELINE & SUCCESSION', items: [
+            ['Exit Timeline', getLabel('timeline')],
+            ['Succession Plan', getLabel('succPlan')]
+          ]},
+          { section: 'BUSINESS HEALTH', items: [
+            ['EBITDA Trend', getLabel('ebitda')],
+            ['Run Without Owner', getLabel('runWithout')],
+            ['SOPs', getLabel('sops')],
+            ['Customer Concentration', getLabel('custConc')]
+          ]},
+          { section: 'FINANCIAL', items: [
+            ['Financial Cleanliness', getLabel('finances')],
+            ['Knows EBITDA', getLabel('knowEbitda')],
+            ['Inbound Interest', getLabel('inbound')],
+            ['Prior Advisor', getLabel('priorAdvisor')]
+          ]},
+          { section: 'MINDSET', items: [
+            ['Post-Exit Vision', getLabel('postExit')],
+            ['Biggest Fear', getLabel('fear')],
+            ['Commitment Level', getLabel('willingness')]
+          ]}
+        ].map(s => `
+          <p style="color:#c9a84c;font-weight:700;font-size:12px;letter-spacing:1px;margin:16px 0 6px;">${s.section}</p>
+          ${s.items.map(([k, v]) => `<p style="margin:3px 0;font-size:13px;"><span style="color:#6b6560;">${k}:</span> <span style="color:#f5f0e8;">${v}</span></p>`).join('')}
+        `).join('');
+
+        // Build insights for each scored answer
+        const insightsForJeanHtml = breakdown.filter(b => b.insight).map(b => {
+          const color = b.color === 'red' ? '#c44b3f' : b.color === 'amber' ? '#d4a43b' : '#4a9e6e';
+          return `
+          <div style="margin:10px 0;padding:12px 16px;background:#161616;border-left:3px solid ${color};border-radius:4px;">
+            <p style="color:#f5f0e8;font-weight:600;margin:0 0 4px;">${b.label} (${b.score}/${b.max})</p>
+            <p style="color:#9a9590;font-size:12px;line-height:1.5;margin:0 0 4px;">${b.insight.diagnosis}</p>
+            <p style="color:${color};font-size:12px;font-weight:600;margin:0;">${b.insight.impact}</p>
+          </div>`;
+        }).join('');
+
         const repHtml = `
-        <div style="font-family:Arial,sans-serif;max-width:600px;padding:30px;background:#0a0a0a;color:#f5f0e8;">
-          <h2 style="color:#c9a84c;margin-top:0;">Assessment Completed: ${answers.ownerName || 'Unknown'}</h2>
+        <div style="font-family:Arial,sans-serif;max-width:640px;padding:30px;background:#0a0a0a;color:#f5f0e8;">
+          <h2 style="color:#c9a84c;margin:0 0 4px;">Exit Assessment: ${answers.ownerName || 'Unknown'}</h2>
+          <p style="color:#6b6560;font-size:12px;margin:0 0 20px;">Completed ${new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'})} at ${new Date().toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'})}</p>
+
           <div style="background:#161616;border:1px solid rgba(201,168,76,0.15);border-radius:8px;padding:20px;margin:16px 0;">
-            <p style="margin:6px 0;"><strong style="color:#c9a84c;">Name:</strong> ${answers.ownerName || 'N/A'}</p>
-            <p style="margin:6px 0;"><strong style="color:#c9a84c;">Email:</strong> ${answers.email || 'N/A'}</p>
-            <p style="margin:6px 0;"><strong style="color:#c9a84c;">Company:</strong> ${answers.companyName || 'N/A'}</p>
-            <p style="margin:6px 0;"><strong style="color:#c9a84c;">Score:</strong> <span style="font-size:24px;font-weight:800;">${total}/100</span> — ${band.toUpperCase()} RISK</p>
+            <table style="width:100%;border-collapse:collapse;">
+              <tr><td style="color:#6b6560;padding:4px 0;">Name</td><td style="color:#f5f0e8;font-weight:600;">${answers.ownerName || 'N/A'}</td></tr>
+              <tr><td style="color:#6b6560;padding:4px 0;">Email</td><td style="color:#f5f0e8;">${answers.email || 'N/A'}</td></tr>
+              <tr><td style="color:#6b6560;padding:4px 0;">Phone</td><td style="color:#f5f0e8;">${answers.phone || 'N/A'}</td></tr>
+              <tr><td style="color:#6b6560;padding:4px 0;">Company</td><td style="color:#f5f0e8;font-weight:600;">${answers.companyName || 'N/A'}</td></tr>
+              <tr><td style="color:#6b6560;padding:4px 0;">Score</td><td><span style="font-size:24px;font-weight:800;color:#c9a84c;">${total}/100</span> <span style="color:#fb923c;font-weight:600;">${band.toUpperCase()} RISK</span></td></tr>
+              <tr><td style="color:#6b6560;padding:4px 0;">TEV</td><td style="color:#fff;font-weight:700;font-size:18px;">${tev.pct}</td></tr>
+            </table>
           </div>
-          <div style="margin:16px 0;">
-            ${breakdown.map(b => `<p style="margin:4px 0;color:${b.color === 'red' ? '#c44b3f' : b.color === 'amber' ? '#d4a43b' : '#4a9e6e'};">■ ${b.label}: ${b.score}/${b.max}</p>`).join('')}
+
+          <div style="background:rgba(196,75,63,0.1);border:1px solid rgba(196,75,63,0.2);border-radius:8px;padding:16px;margin:16px 0;">
+            <p style="color:#c44b3f;font-weight:700;margin:0 0 8px;">PRIORITY DISCUSSION ORDER:</p>
+            <table style="width:100%;border-collapse:collapse;">
+              <tr style="color:#6b6560;font-size:11px;text-transform:uppercase;letter-spacing:1px;">
+                <th style="text-align:left;padding:6px 12px;">Priority</th>
+                <th style="text-align:left;padding:6px 12px;">Area</th>
+                <th style="text-align:left;padding:6px 12px;">Score</th>
+                <th style="text-align:left;padding:6px 12px;">Fix Time</th>
+              </tr>
+              ${priorityList || '<tr><td colspan="4" style="padding:8px 12px;color:#4a9e6e;">No critical priorities - optimization focus</td></tr>'}
+            </table>
           </div>
-          ${flags.length > 0 ? `<div style="background:rgba(196,75,63,0.1);border:1px solid rgba(196,75,63,0.2);border-radius:8px;padding:16px;margin:16px 0;">
-            <p style="color:#c44b3f;font-weight:700;margin:0 0 8px;">Key flags to discuss:</p>
-            ${flags.map(f => `<p style="color:#9a9590;margin:4px 0;font-size:13px;">• ${f.text.split('.')[0]}.</p>`).join('')}
-          </div>` : ''}
-          ${answers.successNote ? `<p style="margin-top:16px;"><strong style="color:#c9a84c;">What success looks like to them:</strong><br><span style="color:#9a9590;">${answers.successNote}</span></p>` : ''}
-          ${answers.extraNote ? `<p><strong style="color:#c9a84c;">Additional notes:</strong><br><span style="color:#9a9590;">${answers.extraNote}</span></p>` : ''}
-          <p style="color:#6b6560;font-size:11px;margin-top:20px;">Arena Follow-Up System — Assessment notification</p>
+
+          <p style="color:#c9a84c;font-weight:700;font-size:14px;margin:20px 0 8px;">INSIGHTS PER CATEGORY:</p>
+          ${insightsForJeanHtml}
+
+          <p style="color:#c9a84c;font-weight:700;font-size:14px;margin:20px 0 8px;">EVERY ANSWER SELECTED:</p>
+          ${allAnswersHtml}
+
+          ${answers.successNote ? `<div style="margin:20px 0;padding:14px 16px;background:#161616;border-radius:8px;border-left:3px solid #c9a84c;"><p style="color:#c9a84c;font-weight:700;margin:0 0 4px;">What success looks like:</p><p style="color:#9a9590;font-size:13px;line-height:1.6;margin:0;">${answers.successNote}</p></div>` : ''}
+          ${answers.extraNote ? `<div style="margin:10px 0;padding:14px 16px;background:#161616;border-radius:8px;border-left:3px solid #c9a84c;"><p style="color:#c9a84c;font-weight:700;margin:0 0 4px;">Additional notes:</p><p style="color:#9a9590;font-size:13px;line-height:1.6;margin:0;">${answers.extraNote}</p></div>` : ''}
+
+          <p style="color:#6b6560;font-size:11px;margin-top:20px;">Arena Exit Assessment — Internal Notification</p>
         </div>`;
 
         fetch('https://services.leadconnectorhq.com/conversations/messages', {
@@ -1912,7 +2526,7 @@ See you soon.
           body: JSON.stringify({
             type: 'Email',
             contactId: jeanId,
-            subject: 'Assessment Complete: ' + (answers.ownerName || 'Unknown') + ' — ' + total + '/100 (' + band + ' risk)',
+            subject: '🎯 Assessment: ' + (answers.ownerName || 'Unknown') + ' — ' + total + '/100 (' + band + ') — ' + (answers.companyName || 'Unknown Co'),
             emailFrom: 'The Arena Partners <support@thearenapartners.com>',
             html: repHtml
           })
