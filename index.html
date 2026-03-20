@@ -789,9 +789,16 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
   .cta-box { padding: 28px 24px; }
 }
 .field-error {
-  border-color: #e74c3c !important;
-  box-shadow: 0 0 0 2px rgba(231,76,60,0.3) !important;
+  border-radius: 8px;
+  padding: 12px;
+  margin-left: -12px;
+  margin-right: -12px;
+  background: rgba(231,76,60,0.05);
+  border: 1px solid rgba(231,76,60,0.3) !important;
   animation: pulse-error 0.5s ease;
+}
+.field-error .field-label {
+  color: #e74c3c !important;
 }
 input.field-error {
   border: 1px solid #e74c3c !important;
@@ -1900,6 +1907,9 @@ function selectOption(card, field, value) {
   group.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
   card.classList.add('selected');
   answers[field] = value;
+  // Clear error highlight when user selects
+  const fieldGroup = card.closest('.field-group');
+  if (fieldGroup) fieldGroup.classList.remove('field-error');
   // Progressive capture
   progressiveData[field] = value;
   progressiveData.lastActivity = new Date().toISOString();
@@ -1971,7 +1981,7 @@ function validateStep(step) {
     if (!checked) {
       const group = document.querySelector('input[name="' + name + '"]');
       if (group) {
-        const container = group.closest('.question-block') || group.closest('.field-group');
+        const container = group.closest('.field-group');
         if (container) {
           container.classList.add('field-error');
           if (!firstError) firstError = container;
@@ -2657,6 +2667,12 @@ function restartForm() {
 
 // Init
 updateProgress();
+
+// Clear error highlights on text input
+['ownerName','companyName','email','phone'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (el) el.addEventListener('input', function() { this.classList.remove('field-error'); });
+});
 </script>
 </body>
 </html>
