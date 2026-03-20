@@ -788,6 +788,32 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
   .risk-matrix-meta { flex-direction: column; gap: 6px; }
   .cta-box { padding: 28px 24px; }
 }
+.field-error {
+  border-color: #e74c3c !important;
+  box-shadow: 0 0 0 2px rgba(231,76,60,0.3) !important;
+  animation: pulse-error 0.5s ease;
+}
+input.field-error {
+  border: 1px solid #e74c3c !important;
+  box-shadow: 0 0 0 2px rgba(231,76,60,0.3) !important;
+}
+.field-error .option-card {
+  border-color: rgba(231,76,60,0.4) !important;
+}
+@keyframes pulse-error {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+}
+.btn-shake {
+  animation: shake 0.5s ease;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
 </style>
 </head>
 <body>
@@ -1889,8 +1915,89 @@ function showStep(n) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+function validateStep(step) {
+  const requiredFields = {
+    1: {
+      texts: ['ownerName', 'companyName', 'email', 'phone'],
+      radios: ['industry', 'revenue']
+    },
+    2: {
+      texts: [],
+      radios: ['timeline', 'ownerAge']
+    },
+    3: {
+      texts: [],
+      radios: ['ebitda', 'runWithout', 'sops', 'custConc']
+    },
+    4: {
+      texts: [],
+      radios: ['finances', 'knowEbitda']
+    },
+    5: {
+      texts: [],
+      radios: ['willingness']
+    }
+  };
+
+  const fields = requiredFields[step];
+  if (!fields) return true;
+
+  // Clear previous error highlights
+  document.querySelectorAll('.step-panel[data-step="' + step + '"] .field-error').forEach(el => el.classList.remove('field-error'));
+
+  let firstError = null;
+
+  // Check text inputs
+  for (const id of fields.texts) {
+    const el = document.getElementById(id);
+    if (el && !el.value.trim()) {
+      el.classList.add('field-error');
+      if (!firstError) firstError = el;
+    }
+  }
+
+  // Check email format
+  if (step === 1) {
+    const emailEl = document.getElementById('email');
+    if (emailEl && emailEl.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+      emailEl.classList.add('field-error');
+      if (!firstError) firstError = emailEl;
+    }
+  }
+
+  // Check radio groups
+  for (const name of fields.radios) {
+    const checked = document.querySelector('input[name="' + name + '"]:checked');
+    if (!checked) {
+      const group = document.querySelector('input[name="' + name + '"]');
+      if (group) {
+        const container = group.closest('.question-block') || group.closest('.field-group');
+        if (container) {
+          container.classList.add('field-error');
+          if (!firstError) firstError = container;
+        }
+      }
+    }
+  }
+
+  if (firstError) {
+    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Shake the button
+    const btn = document.querySelector('.step-panel[data-step="' + step + '"] .btn-next');
+    if (btn) {
+      btn.classList.add('btn-shake');
+      setTimeout(() => btn.classList.remove('btn-shake'), 600);
+    }
+    return false;
+  }
+  return true;
+}
+
 function nextStep() {
   if (currentStep < totalSteps) {
+    // Validate before proceeding
+    if (!validateStep(currentStep)) return;
+
     // Record section completion for progressive capture
     if (!progressiveData.completedSections.includes(currentStep)) {
       progressiveData.completedSections.push(currentStep);
