@@ -1975,13 +1975,12 @@ function validateStep(step) {
     }
   }
 
-  // Check radio groups
+  // Check radio groups - use answers object since selectOption doesn't set native checked
   for (const name of fields.radios) {
-    const checked = document.querySelector('input[name="' + name + '"]:checked');
-    if (!checked) {
-      const group = document.querySelector('input[name="' + name + '"]');
-      if (group) {
-        const container = group.closest('.field-group');
+    if (!answers[name]) {
+      const radio = document.querySelector('input[name="' + name + '"]');
+      if (radio) {
+        const container = radio.closest('.field-group');
         if (container) {
           container.classList.add('field-error');
           if (!firstError) firstError = container;
